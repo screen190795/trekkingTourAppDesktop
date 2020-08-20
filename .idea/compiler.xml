@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="main" />
+        <module name="appApachePoi" />
+        <module name="model" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="appApachePoi" target="11" />
+      <module name="appDocx4j" target="11" />
+      <module name="controller" target="11" />
+      <module name="main" target="11" />
+      <module name="model" target="11" />
+      <module name="trakkingTourApp" target="11" />
+      <module name="trakkingTourWeb" target="1.7" />
+      <module name="view" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

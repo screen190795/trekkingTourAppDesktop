@@ -1,0 +1,17 @@
+view\NewMain.class
+controller\Controller.class
+controller\InsertProductMenuController.class
+controller\InsertRouteTypeController.class
+controller\PrimaryController.class
+controller\InsertGroupController.class
+controller\InsertProductMenuTypeController.class
+view\App.class
+module-info.class
+controller\InsertTourProjectController.class
+controller\InsertProductController.class
+controller\ItemsUpdateController.class
+controller\InsertEquipmentTypeController.class
+controller\ItemsInsertController.class
+controller\InsertEquipmentController.class
+controller\InsertClientController.class
+controller\GeoDataController.class
