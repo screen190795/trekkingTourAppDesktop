@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="555.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.GeoDataController">
+  <children>
+    <MenuBar prefHeight="10.0" prefWidth="665.0" VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="618.0" prefWidth="641.0" VBox.vgrow="ALWAYS">
+      <children>
+            <TextField fx:id="insertGoogleMapsURLText" layoutX="43.0" layoutY="41.0" onKeyReleased="#smartGeoDataInsert" prefHeight="37.0" prefWidth="188.0" promptText="URL маршрута Google Maps" />
+            <TextField fx:id="insertStartXText" layoutX="43.0" layoutY="86.0" prefHeight="37.0" prefWidth="105.0" promptText="старт, коорд. Х" />
+            <Label layoutX="43.0" layoutY="10.0" prefHeight="26.0" prefWidth="356.0" text="Smart-редактор данных о типе маршрута">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="executeGeoDataButton" layoutX="426.0" layoutY="442.0" mnemonicParsing="false" onAction="#execute" prefHeight="38.0" prefWidth="153.0" text="Добавить данные" />
+            <TextField fx:id="insertStartYText" layoutX="169.0" layoutY="86.0" prefHeight="37.0" prefWidth="105.0" promptText="старт, коорд. Y" />
+            <TextField fx:id="insertFinishXText" layoutX="43.0" layoutY="151.0" prefHeight="37.0" prefWidth="105.0" promptText="финиш, коорд. Х" />
+            <TextField fx:id="insertFinishYText" layoutX="169.0" layoutY="151.0" prefHeight="37.0" prefWidth="105.0" promptText="финиш, коорд. Y" />
+            <TextField fx:id="insertDistanceText" layoutX="43.0" layoutY="206.0" prefHeight="37.0" prefWidth="105.0" promptText="Расстояние, км" />
+            <Button fx:id="insertGeoPointsButton" layoutX="426.0" layoutY="265.0" mnemonicParsing="false" onAction="#insertGeoPoints" prefHeight="38.0" prefWidth="153.0" text="Добавить координаты" />
+            <Button fx:id="insertDistanceButton" layoutX="426.0" layoutY="309.0" mnemonicParsing="false" onAction="#insertDistance" prefHeight="38.0" prefWidth="153.0" text="Добавить дистанцию" />
+            <Button fx:id="insertWeatherForecastButton" layoutX="426.0" layoutY="398.0" mnemonicParsing="false" onAction="#insertWeatherForecast" prefHeight="38.0" prefWidth="153.0" text="Добавить прогноз погоды" />
+            <TextArea fx:id="insertWeatherForecastText" layoutX="43.0" layoutY="301.0" prefHeight="212.0" prefWidth="342.0" promptText="Погода" wrapText="true" />
+            <Button fx:id="insertDurationButton" layoutX="426.0" layoutY="354.0" mnemonicParsing="false" onAction="#insertDuration" prefHeight="38.0" prefWidth="153.0" text="Добавить продолжительность" />
+            <TextField fx:id="insertDurationText" layoutX="43.0" layoutY="256.0" prefHeight="37.0" prefWidth="165.0" promptText="Продолжительность, дней" />
+            <CheckBox fx:id="areChildrenOrElderlyCheckBox" layoutX="349.0" layoutY="96.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="188.0" text="Есть дети или пожилые люди" />
+            <CheckBox fx:id="isSportGroupCheckBox" layoutX="349.0" layoutY="132.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="208.0" text="Группа относится к спортивной" />
+            <CheckBox fx:id="isBigGroupCheckBox" layoutX="349.0" layoutY="59.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="188.0" text="Многочисленная группа" />
+            <TextField fx:id="insertDaysOffText" layoutX="347.0" layoutY="170.0" onKeyReleased="#insertDaysOff" prefHeight="37.0" prefWidth="111.0" promptText="Дневки, дней" />
+            <Label fx:id="insertDaysOffLabel" layoutX="465.0" layoutY="176.0" prefHeight="25.0" prefWidth="105.0" text="ОК" />
+            <TextField fx:id="insertHikingHoursText" layoutX="287.0" layoutY="219.0" onKeyReleased="#insertHikingHours" prefHeight="37.0" prefWidth="171.0" promptText="Кол-во часов хода в день" />
+            <Label fx:id="insertHikingHoursLabel" layoutX="465.0" layoutY="225.0" prefHeight="25.0" prefWidth="105.0" text="ОК" />
+            <Button fx:id="cancelButton" layoutX="426.0" layoutY="486.0" mnemonicParsing="false" onAction="#cancel" prefHeight="38.0" prefWidth="153.0" text="Отмена" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

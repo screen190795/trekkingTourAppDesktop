@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ItemsInsertController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <TextField fx:id="insertNameText" layoutX="43.0" layoutY="41.0" onKeyTyped="#insertName" prefHeight="19.0" prefWidth="188.0" promptText="Название" />
+            <TextField fx:id="insertWeightText" layoutX="43.0" layoutY="86.0" onKeyTyped="#insertWeight" prefHeight="37.0" prefWidth="188.0" promptText="Вес, кг" />
+            <TextField fx:id="insertVolumeText" layoutX="43.0" layoutY="132.0" onKeyTyped="#insertVolume" prefHeight="38.0" prefWidth="188.0" promptText="Объем, л" />
+            <TextField fx:id="insertDescriptionText" layoutX="43.0" layoutY="178.0" onKeyTyped="#insertDescription" prefHeight="155.0" prefWidth="188.0" promptText="Описание" />
+            <Label layoutX="43.0" layoutY="10.0" prefHeight="26.0" prefWidth="216.0" text="Добавление снаряжения">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="insertNameLabel" disable="true" layoutX="260.0" layoutY="42.0" prefHeight="26.0" prefWidth="188.0" text="OK" />
+            <Label fx:id="insertWeightLabel" disable="true" layoutX="259.0" layoutY="92.0" prefHeight="26.0" prefWidth="188.0" text="OK" />
+            <Label fx:id="insertVolumeLabel" disable="true" layoutX="259.0" layoutY="138.0" prefHeight="26.0" prefWidth="188.0" text="OK" />
+            <Label fx:id="insertDescriptionLabel" disable="true" layoutX="259.0" layoutY="188.0" prefHeight="26.0" prefWidth="188.0" text="OK" />
+            <Button fx:id="executeButton" layoutX="508.0" layoutY="295.0" mnemonicParsing="false" onAction="#execute" prefHeight="38.0" prefWidth="102.0" text="Выполнить" />
+            <Button fx:id="cancelButton" layoutX="396.0" layoutY="295.0" mnemonicParsing="false" onAction="#cancel" prefHeight="38.0" prefWidth="102.0" text="Отмена" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

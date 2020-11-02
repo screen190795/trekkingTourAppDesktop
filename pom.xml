@@ -1,16 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example</groupId>
     <artifactId>trakkingTourApp</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>model</module>
-        <module>main</module>
-        <module>appApachePoi</module>
-
-    </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
@@ -28,20 +22,43 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>13</version>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.11</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>1.3.72</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
-        </dependency>
+
     </dependencies>
     <build>
 
@@ -50,8 +67,23 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
-                <configuration>                    <release>11</release>
+                <configuration>
+                    <release>11</release>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>1.3.72</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -65,7 +97,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>view.NewMain</mainClass>
+                    <mainClass>org.example.view.NewMain</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -74,65 +106,64 @@
                 <version>0.0.4</version>
 
                 <configuration>
-                    <mainClass>view.NewMain</mainClass>
+                    <mainClass>org.example.view.NewMain</mainClass>
                 </configuration>
-            <dependencies>
-                <dependency>
-                    <groupId>org.openjfx</groupId>
-                    <artifactId>javafx-controls</artifactId>
-                    <version>13</version>
-                    <classifier>win</classifier>
-                </dependency>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.openjfx</groupId>
+                        <artifactId>javafx-controls</artifactId>
+                        <version>13</version>
+                        <classifier>win</classifier>
+                    </dependency>
 
 
+                    <dependency>
+                        <groupId>org.openjfx</groupId>
+                        <artifactId>javafx-fxml</artifactId>
+                        <version>13</version>
+                        <classifier>win</classifier>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openjfx</groupId>
+                        <artifactId>javafx-graphics</artifactId>
+                        <version>13</version>
+                        <classifier>win</classifier>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.openjfx</groupId>
+                        <artifactId>javafx-base</artifactId>
+                        <version>13</version>
+                        <classifier>win</classifier>
+                    </dependency>
+                    <!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-core -->
 
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>13</version>
-            <classifier>win</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-graphics</artifactId>
-            <version>13</version>
-            <classifier>win</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-base</artifactId>
-            <version>13</version>
-            <classifier>win</classifier>
-        </dependency>
-                <!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-core -->
 
-
-            </dependencies>
+                </dependencies>
 
             </plugin>
-<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-shade-plugin</artifactId>
-    <version>3.2.4</version>
-    <executions>
-        <execution>
-            <phase>package</phase>
-            <goals>
-                <goal>shade</goal>
-            </goals>
-            <configuration>
-                <transformers>
-                    <transformer
-                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                        <mainClass>view.NewMain</mainClass>
-                    </transformer>
-                </transformers>
-                <shadedArtifactAttached>true</shadedArtifactAttached>
-                <shadedClassifierName>executable</shadedClassifierName>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.example.view.NewMain</mainClass>
+                                </transformer>
+                            </transformers>
+                            <shadedArtifactAttached>true</shadedArtifactAttached>
+                            <shadedClassifierName>executable</shadedClassifierName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.commons</groupId>
@@ -140,36 +171,28 @@
                 <version>3.10</version>
             </plugin>
 
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>2.4.0</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <instructions combine.inherited="append">
-                            ...
-                            <!--suppress UnresolvedMavenProperty -->
-                            <Export-Package>
-                                org.hibernate.*;version=${pkgVersion};-split-package:=merge-last
-
-                            </Export-Package>
-                            <Bundle-SymbolicName>${project.artifactId};singleton=true</Bundle-SymbolicName>
-                        </instructions>
-                    </configuration>
-                </plugin>
             <plugin>
-
-                <!-- https://mvnrepository.com/artifact/org.docx4j/docx4j -->
-
-                    <groupId>org.docx4j</groupId>
-                    <artifactId>docx4j</artifactId>
-                    <version>6.1.2</version>
-
-
-
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions combine.inherited="append">
+                        ...
+                        <!--suppress UnresolvedMavenProperty -->
+                        <Export-Package>
+                            org.hibernate.*;version=${pkgVersion};-split-package:=merge-last
+                        </Export-Package>
+                        <Bundle-SymbolicName>${project.artifactId};singleton=true</Bundle-SymbolicName>
+                    </instructions>
+                </configuration>
             </plugin>
-
-
-    </plugins>
-</build>
+            <plugin>
+                <!-- https://mvnrepository.com/artifact/org.docx4j/docx4j -->
+                <groupId>org.docx4j</groupId>
+                <artifactId>docx4j</artifactId>
+                <version>6.1.2</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
