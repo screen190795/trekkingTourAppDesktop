@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
@@ -24,8 +23,8 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    FXMLLoader loader = new FXMLLoader();
-    Controller controller = loader.getController();
+    //FXMLLoader loader = new FXMLLoader();
+    //Controller controller = loader.getController();
     static Item updatedItem = new Item();
     static Product updatedProduct = new Product();
     static EquipmentType updatedEquipmentType = new EquipmentType();
@@ -166,7 +165,7 @@ public class Controller implements Initializable {
     @FXML
     private void insert() {
 
-        ItemsInsertController itemsInsertController = new ItemsInsertController();
+        //ItemsInsertController itemsInsertController = new ItemsInsertController();
         try {
             App.setRoot("/insertView.fxml");
         } catch (Exception e) {
@@ -188,28 +187,27 @@ public class Controller implements Initializable {
             ObservableList<Item> itemObservableList = FXCollections.observableArrayList(list);
             itemsListView.getItems().setAll(itemObservableList);
         } catch (NullPointerException e) {
-        e.printStackTrace();
-        alertWindow = new Alert(Alert.AlertType.WARNING);
-        alertWindow.setHeaderText("Не выбран элемент'");
-        alertWindow.showAndWait();
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.WARNING);
+            alertWindow.setHeaderText("Не выбран элемент'");
+            alertWindow.showAndWait();
 
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        alertWindow = new Alert(Alert.AlertType.ERROR);
-        alertWindow.setHeaderText("Неизвестная ошибка");
-        alertWindow.showAndWait();
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.ERROR);
+            alertWindow.setHeaderText("Неизвестная ошибка");
+            alertWindow.showAndWait();
+        }
     }
 
     @FXML
     private void update() {
         try {
-        updatedItem = (Item) itemsListView.getSelectionModel().getSelectedItem();
-        ItemsUpdateController itemsUpdateController = new ItemsUpdateController();
-        if(updatedItem == null){
-            throw new NullPointerException();
-        }
+            updatedItem = (Item) itemsListView.getSelectionModel().getSelectedItem();
+            if(updatedItem == null){
+                throw new NullPointerException();
+            }
             App.setRoot("/updateView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -230,11 +228,10 @@ public class Controller implements Initializable {
     @FXML
     private void updateProduct() {
         try {
-        updatedProduct = (Product) itemsListView.getSelectionModel().getSelectedItem();
-        InsertProductController itemsInsertController = new InsertProductController();
-        if(updatedProduct == null){
-            throw new NullPointerException();
-        }
+            updatedProduct = (Product) itemsListView.getSelectionModel().getSelectedItem();
+            if(updatedProduct == null){
+                throw new NullPointerException();
+            }
             App.setRoot("/insertProductView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -273,7 +270,7 @@ public class Controller implements Initializable {
 
     @FXML
     private void insertProduct() {
-        InsertProductController insertProductController = new InsertProductController();
+
         try {
             App.setRoot("/insertProductView.fxml");
         } catch (Exception e) {
@@ -288,16 +285,16 @@ public class Controller implements Initializable {
     @FXML
     private void deleteProduct() {
         try{
-        Product product = (Product) itemsListView.getSelectionModel().getSelectedItem();
-        H2ProductDAO h2ProductDAO = new H2ProductDAO();
-        h2ProductDAO.deleteProduct(product.getId());
-        List<Product> list;
-        list = h2ProductDAO.findAll();
-        ObservableList<Product> productObservableList = FXCollections.observableArrayList(list);
-        itemsListView.getItems().setAll(productObservableList);
+            Product product = (Product) itemsListView.getSelectionModel().getSelectedItem();
+            H2ProductDAO h2ProductDAO = new H2ProductDAO();
+            h2ProductDAO.deleteProduct(product.getId());
+            List<Product> list;
+            list = h2ProductDAO.findAll();
+            ObservableList<Product> productObservableList = FXCollections.observableArrayList(list);
+            itemsListView.getItems().setAll(productObservableList);
             if(product == null){
-                 throw new NullPointerException();
-             }
+                throw new NullPointerException();
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -326,7 +323,6 @@ public class Controller implements Initializable {
     @FXML
     private void insertEquipmentType() {
 
-        InsertEquipmentTypeController insertEquipmentTypeController = new InsertEquipmentTypeController();
         try {
             App.setRoot("/insertEquipmentTypeView.fxml");
         } catch (Exception e) {
@@ -340,11 +336,10 @@ public class Controller implements Initializable {
     @FXML
     private void updateEquipmentType() {
         try {
-        updatedEquipmentType = (EquipmentType) itemsListView.getSelectionModel().getSelectedItem();
-        InsertEquipmentTypeController insertEquipmentTypeController = new InsertEquipmentTypeController();
-        if(updatedEquipmentType == null){
-            throw new NullPointerException();
-        }
+            updatedEquipmentType = (EquipmentType) itemsListView.getSelectionModel().getSelectedItem();
+            if(updatedEquipmentType == null){
+                throw new NullPointerException();
+            }
             App.setRoot("/insertEquipmentTypeView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -364,16 +359,16 @@ public class Controller implements Initializable {
     @FXML
     private void deleteEquipmentType() {
         try{
-        EquipmentType equipmentType = (EquipmentType) itemsListView.getSelectionModel().getSelectedItem();
-        H2EquipmentTypeDAO h2EquipmentTypeDAO = new H2EquipmentTypeDAO();
-        h2EquipmentTypeDAO.deleteEquipmentType(equipmentType.getId());
-        List<EquipmentType> list;
-        list = h2EquipmentTypeDAO.findAll();
-        ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(list);
-        itemsListView.getItems().setAll(equipmentTypeObservableList);
-        if(equipmentType == null){
-            throw new NullPointerException();
-        }
+            EquipmentType equipmentType = (EquipmentType) itemsListView.getSelectionModel().getSelectedItem();
+            H2EquipmentTypeDAO h2EquipmentTypeDAO = new H2EquipmentTypeDAO();
+            h2EquipmentTypeDAO.deleteEquipmentType(equipmentType.getId());
+            List<EquipmentType> list;
+            list = h2EquipmentTypeDAO.findAll();
+            ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(list);
+            itemsListView.getItems().setAll(equipmentTypeObservableList);
+            if(equipmentType == null){
+                throw new NullPointerException();
+            }
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -384,17 +379,17 @@ public class Controller implements Initializable {
             confirmation.setHeaderText("Данный элемент присутствует в других таблицах");
             confirmation.showAndWait();
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        alertWindow = new Alert(Alert.AlertType.ERROR);
-        alertWindow.setHeaderText("Неизвестная ошибка");
-        alertWindow.showAndWait();
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.ERROR);
+            alertWindow.setHeaderText("Неизвестная ошибка");
+            alertWindow.showAndWait();
+        }
     }
 
     @FXML
     private void insertEquipment() {
-        InsertEquipmentController insertEquipmentController = new InsertEquipmentController();
+        //InsertEquipmentController insertEquipmentController = new InsertEquipmentController();
         try {
             App.setRoot("/insertEquipmentView.fxml");
         } catch (Exception e) {
@@ -440,18 +435,18 @@ public class Controller implements Initializable {
                 throw new NullPointerException();
             }
         } catch (NullPointerException e) {
-        e.printStackTrace();
-        alertWindow = new Alert(Alert.AlertType.WARNING);
-        alertWindow.setHeaderText("Не выбран элемент'");
-        alertWindow.showAndWait();
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.WARNING);
+            alertWindow.setHeaderText("Не выбран элемент'");
+            alertWindow.showAndWait();
 
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        alertWindow = new Alert(Alert.AlertType.ERROR);
-        alertWindow.setHeaderText("Неизвестная ошибка");
-        alertWindow.showAndWait();
-    }
+        } catch (Exception e) {
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.ERROR);
+            alertWindow.setHeaderText("Неизвестная ошибка");
+            alertWindow.showAndWait();
+        }
 
     }
 
@@ -460,7 +455,7 @@ public class Controller implements Initializable {
     @FXML
     private void insertProductMenuType() {
 
-        InsertProductMenuTypeController insertProductMenuTypeController = new InsertProductMenuTypeController();
+        //InsertProductMenuTypeController insertProductMenuTypeController = new InsertProductMenuTypeController();
         try {
             App.setRoot("/insertProductMenuTypeView.fxml");
         } catch (Exception e) {
@@ -484,11 +479,10 @@ public class Controller implements Initializable {
     @FXML
     private void updateProductMenuType() {
         try {
-        updatedProductMenuType = (ProductMenuType) itemsListView.getSelectionModel().getSelectedItem();
-        InsertProductMenuTypeController insertProductMenuTypeController = new InsertProductMenuTypeController();
-        if(updatedEquipmentType == null){
-            throw new NullPointerException();
-        }
+            updatedProductMenuType = (ProductMenuType) itemsListView.getSelectionModel().getSelectedItem();
+            if(updatedEquipmentType == null){
+                throw new NullPointerException();
+            }
             App.setRoot("/insertProductMenuTypeView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -532,7 +526,6 @@ public class Controller implements Initializable {
 
     @FXML
     private void insertProductMenu() {
-        InsertProductMenuController insertProductMenuController = new InsertProductMenuController();
         try {
             App.setRoot("/insertProductMenuView.fxml");
 
@@ -558,13 +551,13 @@ public class Controller implements Initializable {
     @FXML
     private void deleteProductMenu() {
         try{
-        ProductMenu productMenu = (ProductMenu) additionalListView.getSelectionModel().getSelectedItem();
-        H2ProductMenuDAO h2ProductMenuDAO = new H2ProductMenuDAO();
-        h2ProductMenuDAO.deleteProductMenu(productMenu.getProductId(), productMenu.getProductMenuTypeId());
-        List<ProductMenu> productMenuList;
-        productMenuList = h2ProductMenuDAO.findAllProductMenu();
-        ObservableList<ProductMenu> productMenuObservableList = FXCollections.observableArrayList(productMenuList);
-        additionalListView.getItems().setAll(productMenuObservableList);
+            ProductMenu productMenu = (ProductMenu) additionalListView.getSelectionModel().getSelectedItem();
+            H2ProductMenuDAO h2ProductMenuDAO = new H2ProductMenuDAO();
+            h2ProductMenuDAO.deleteProductMenu(productMenu.getProductId(), productMenu.getProductMenuTypeId());
+            List<ProductMenu> productMenuList;
+            productMenuList = h2ProductMenuDAO.findAllProductMenu();
+            ObservableList<ProductMenu> productMenuObservableList = FXCollections.observableArrayList(productMenuList);
+            additionalListView.getItems().setAll(productMenuObservableList);
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -582,7 +575,6 @@ public class Controller implements Initializable {
 
     @FXML
     private void insertClient() {
-       InsertClientController insertClientController = new InsertClientController();
         try {
             App.setRoot("/insertClientView.fxml");
         } catch (Exception e) {
@@ -596,8 +588,8 @@ public class Controller implements Initializable {
     @FXML
     private void updateClient() {
         try {
-        updatedClient = (Client) itemsListView.getSelectionModel().getSelectedItem();
-        InsertClientController insertClientController = new InsertClientController();
+            updatedClient = (Client) itemsListView.getSelectionModel().getSelectedItem();
+            //InsertClientController insertClientController = new InsertClientController();
             if(updatedClient == null){
                 throw new NullPointerException();
             }
@@ -656,7 +648,6 @@ public class Controller implements Initializable {
 
     @FXML
     private void insertRouteType() {
-        InsertRouteTypeController insertRouteTypeController = new InsertRouteTypeController();
         try {
             App.setRoot("/insertRouteTypeView.fxml");
 
@@ -671,11 +662,10 @@ public class Controller implements Initializable {
     @FXML
     private void updateRouteType() {
         try{
-        updatedRouteType = (RouteType) itemsListView.getSelectionModel().getSelectedItem();
-        InsertRouteTypeController insertRouteTypeController = new InsertRouteTypeController();
-        if(updatedRouteType == null){
-            throw new NullPointerException();
-        }
+            updatedRouteType = (RouteType) itemsListView.getSelectionModel().getSelectedItem();
+            if(updatedRouteType == null){
+                throw new NullPointerException();
+            }
             App.setRoot("/insertRouteTypeView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -695,13 +685,13 @@ public class Controller implements Initializable {
     @FXML
     private void deleteRouteType() {
         try{
-        RouteType routeType = (RouteType) itemsListView.getSelectionModel().getSelectedItem();
-        H2RouteTypeDAO h2RouteTypeDAO = new H2RouteTypeDAO();
-        h2RouteTypeDAO.deleteRouteType(routeType.getRouteTypeId());
-        List<RouteType> list;
-        list = h2RouteTypeDAO.findAllRouteTypes();
-        ObservableList<RouteType> routeTypeObservableList = FXCollections.observableArrayList(list);
-        itemsListView.getItems().setAll(routeTypeObservableList);
+            RouteType routeType = (RouteType) itemsListView.getSelectionModel().getSelectedItem();
+            H2RouteTypeDAO h2RouteTypeDAO = new H2RouteTypeDAO();
+            h2RouteTypeDAO.deleteRouteType(routeType.getRouteTypeId());
+            List<RouteType> list;
+            list = h2RouteTypeDAO.findAllRouteTypes();
+            ObservableList<RouteType> routeTypeObservableList = FXCollections.observableArrayList(list);
+            itemsListView.getItems().setAll(routeTypeObservableList);
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -728,7 +718,6 @@ public class Controller implements Initializable {
 
     @FXML
     private void insertGroup() {
-        InsertGroupController insertGroupController = new InsertGroupController();
         try {
             App.setRoot("/insertGroupView.fxml");
         } catch (Exception e) {
@@ -753,13 +742,13 @@ public class Controller implements Initializable {
     @FXML
     private void deleteGroup() {
         try{
-        Group group = (Group) additionalListView.getSelectionModel().getSelectedItem();
-        H2GroupDAO h2GroupDAO = new H2GroupDAO();
-        h2GroupDAO.deleteGroup(group.getClientId(), group.getRouteTypeId());
-        List<Group> groupList;
-        groupList = h2GroupDAO.findAllGroups();
-        ObservableList<Group> groupObservableList = FXCollections.observableArrayList(groupList);
-        additionalListView.getItems().setAll(groupObservableList);
+            Group group = (Group) additionalListView.getSelectionModel().getSelectedItem();
+            H2GroupDAO h2GroupDAO = new H2GroupDAO();
+            h2GroupDAO.deleteGroup(group.getClientId(), group.getRouteTypeId());
+            List<Group> groupList;
+            groupList = h2GroupDAO.findAllGroups();
+            ObservableList<Group> groupObservableList = FXCollections.observableArrayList(groupList);
+            additionalListView.getItems().setAll(groupObservableList);
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -783,7 +772,6 @@ public class Controller implements Initializable {
 
     @FXML
     private void insertTourProject(){
-        InsertTourProjectController insertTourProjectController = new InsertTourProjectController();
         try {
             App.setRoot("/insertTourProjectView.fxml");
         } catch (Exception e) {
@@ -810,10 +798,9 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void loadTourProjects() throws  IOException, ClassNotFoundException{
+    private void loadTourProjects() throws  IOException {
         FileInputStream fiStream = new FileInputStream("tourProjects.dat");
         ObjectInputStream objectStream = new ObjectInputStream(fiStream);
-        Object object = objectStream.readObject();
         fiStream.close();
         objectStream.close();
 
@@ -821,9 +808,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
     }
 
 }
