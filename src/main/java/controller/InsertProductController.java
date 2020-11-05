@@ -1,19 +1,10 @@
 package controller;
 
-import javafx.event.ActionEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
-import model.H2ItemDAO;
 import model.H2ProductDAO;
-import model.Item;
 import model.Product;
-import org.h2.jdbc.JdbcSQLException;
 import view.App;
 import java.io.IOException;
 import java.net.URL;
@@ -21,8 +12,7 @@ import java.util.ResourceBundle;
 import static controller.Controller.updatedProduct;
 
 public class InsertProductController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
+
 
 
     @FXML
@@ -62,7 +52,6 @@ public class InsertProductController implements Initializable {
 
 
     Product product = new Product();
-    private Alert alertWindow;
 
 
     @FXML
@@ -150,13 +139,13 @@ public class InsertProductController implements Initializable {
     }
     @FXML
     private void execute() {
+        Alert alertWindow;
         try {
             if(product.getName().isEmpty() || product.getWeight() == 0){
                 throw new NullPointerException();
             }
         H2ProductDAO h2ProductDAO = new H2ProductDAO();
         h2ProductDAO.insertProduct(product);
-        Controller controller = new Controller();
             App.setRoot("/trakkingAppView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -178,7 +167,6 @@ public class InsertProductController implements Initializable {
         H2ProductDAO h2ProductDAO = new H2ProductDAO();
         h2ProductDAO.updateProduct(updatedProduct);
 
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -188,7 +176,6 @@ public class InsertProductController implements Initializable {
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {

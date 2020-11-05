@@ -3,7 +3,6 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.*;
@@ -11,24 +10,22 @@ import view.App;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class InsertProductMenuController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
-   static ProductMenu productMenu = new ProductMenu();
+
+    static ProductMenu productMenu = new ProductMenu();
     static int quantity;
     static int productId;
     static int productMenuTypeId;
     @FXML
     TextField insertQuantityText;
     @FXML
-    ComboBox productMenuTypeComboBox;
+    ComboBox<ProductMenuType> productMenuTypeComboBox;
     @FXML
-    ListView itemListView;
+    ListView<Product> itemListView;
 
     @FXML
     Button executeButton;
@@ -39,19 +36,19 @@ public class InsertProductMenuController implements Initializable {
 
     @FXML
     int selectProduct(){
-        Product product = (Product) itemListView.getSelectionModel().getSelectedItem();
+        Product product = itemListView.getSelectionModel().getSelectedItem();
         productId = product.getId();
         System.out.println(productId + "%%%%%%%%%%%%%%%%%%");
         return  productId;
     }
 
     @FXML
-     int selectProductMenuType(){
-        
-      ProductMenuType productMenuType = (ProductMenuType) productMenuTypeComboBox.getSelectionModel().getSelectedItem();
+    int selectProductMenuType(){
+
+        ProductMenuType productMenuType = productMenuTypeComboBox.getSelectionModel().getSelectedItem();
         productMenuTypeId = productMenuType.getId();
-      System.out.println(productMenuTypeId);
-      return  productMenuTypeId;
+        System.out.println(productMenuTypeId);
+        return  productMenuTypeId;
     }
 
 
@@ -74,14 +71,13 @@ public class InsertProductMenuController implements Initializable {
     void execute() {
 
         for(int i = 0; i < quantity; i++){
-          H2ProductMenuDAO h2ProductMenuDAO = new H2ProductMenuDAO();
-           productMenu.setProductId(productId);
-           productMenu.setProductMenuTypeId(productMenuTypeId);
-           System.out.println(productMenu.getProductId() + " " + productMenu.getProductMenuTypeId());
+            H2ProductMenuDAO h2ProductMenuDAO = new H2ProductMenuDAO();
+            productMenu.setProductId(productId);
+            productMenu.setProductMenuTypeId(productMenuTypeId);
+            System.out.println(productMenu.getProductId() + " " + productMenu.getProductMenuTypeId());
             h2ProductMenuDAO.insertProductMenu(productMenu);
         }
 
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -91,7 +87,6 @@ public class InsertProductMenuController implements Initializable {
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -103,14 +98,12 @@ public class InsertProductMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         H2ProductDAO h2ProductDAO = new H2ProductDAO();
-        List<Product> list = new ArrayList<>();
-        list = h2ProductDAO.findAll();
+        List<Product> list = h2ProductDAO.findAll();
         ObservableList<Product> productObservableList = FXCollections.observableArrayList(list);
         itemListView.getItems().setAll(productObservableList);
 
         H2ProductMenuTypeDAO h2ProductMenuTypeDAO= new H2ProductMenuTypeDAO();
-        List<ProductMenuType> productMenuTypeList = new ArrayList<>();
-        productMenuTypeList= h2ProductMenuTypeDAO.findAllProductMenuTypes();
+        List<ProductMenuType> productMenuTypeList = h2ProductMenuTypeDAO.findAllProductMenuTypes();
         ObservableList<ProductMenuType> productMenuTypeObservableList = FXCollections.observableArrayList(productMenuTypeList);
         productMenuTypeComboBox.getItems().removeAll(productMenuTypeComboBox.getItems());
         productMenuTypeComboBox.getItems().addAll(productMenuTypeObservableList);

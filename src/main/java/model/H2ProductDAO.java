@@ -21,6 +21,7 @@ public class H2ProductDAO implements ProductDAO {
         String sql = "INSERT INTO PRODUCTS VALUES(null, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
+            assert connection != null;
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, product.getName());
             stm.setFloat(2, product.getWeight());
@@ -39,10 +40,12 @@ public class H2ProductDAO implements ProductDAO {
     public boolean deleteProduct(int id) {
 
         String sql = "DELETE FROM PRODUCTS WHERE PRODUCT_ID = ?";
-        try (Connection connection = H2DAOFactory.createConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            statement.executeUpdate();
+        try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -55,6 +58,7 @@ public class H2ProductDAO implements ProductDAO {
         Connection connection = H2DAOFactory.createConnection();
         String sql = "UPDATE PRODUCTS SET PRODUCT_NAME=?, PRODUCT_WEIGHT=?, PRODUCT_CALORIES=?, PRODUCT_PROTEINS=?, PRODUCT_FATS =?, PRODUCT_CARBOHYDRATES =?,PRODUCT_DESCRIPTION =? WHERE PRODUCT_ID=?";
         try {
+            assert connection != null;
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(8, product.getId());
             stm.setString(1, product.getName());
@@ -76,29 +80,30 @@ public class H2ProductDAO implements ProductDAO {
     @Override
     public List<Product> findAll() {
         List<Product> products = new ArrayList<>();
-                String sql = "SELECT * FROM PRODUCTS";
-                try (Connection connection = H2DAOFactory.createConnection()) {
-                    Statement statement = connection.createStatement();
-                    ResultSet rs = statement.executeQuery(sql);
-                    while (rs.next()) {
-                        int id = rs.getInt(1);
-                        String name = rs.getString(2);
-                        float weight = rs.getFloat(3);
-                        float calories = rs.getFloat(4);
-                        float proteins = rs.getFloat(5);
-                        float fats = rs.getFloat(6);
-                        float carbohydrates = rs.getFloat(7);
-                        String description = rs.getString(8);
-                        Product product = new Product();
-                        product.setId(id);
-                        product.setName(name);
-                        product.setWeight(weight);
-                        product.setCalories(calories);
-                        product.setProteins(proteins);
-                        product.setFats(fats);
-                        product.setCarbohydrates(carbohydrates);
-                        product.setDescription(description);
-                        products.add(product);
+        String sql = "SELECT * FROM PRODUCTS";
+        try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                int id = rs.getInt(1);
+                String name = rs.getString(2);
+                float weight = rs.getFloat(3);
+                float calories = rs.getFloat(4);
+                float proteins = rs.getFloat(5);
+                float fats = rs.getFloat(6);
+                float carbohydrates = rs.getFloat(7);
+                String description = rs.getString(8);
+                Product product = new Product();
+                product.setId(id);
+                product.setName(name);
+                product.setWeight(weight);
+                product.setCalories(calories);
+                product.setProteins(proteins);
+                product.setFats(fats);
+                product.setCarbohydrates(carbohydrates);
+                product.setDescription(description);
+                products.add(product);
             }
 
 
@@ -115,29 +120,31 @@ public class H2ProductDAO implements ProductDAO {
         Product product = new Product();
         product.setId(id);
 
-        try (Connection connection = H2DAOFactory.createConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                int productId = rs.getInt(1);
-                String name = rs.getString(2);
-                float weight = rs.getFloat(3);
-                float calories = rs.getFloat(4);
-                float proteins = rs.getFloat(5);
-                float fats = rs.getFloat(6);
-                float carbohydrates = rs.getFloat(7);
-                String description = rs.getString(8);
-                product.setId(productId);
-                product.setName(name);
-                product.setWeight(weight);
-                product.setCalories(calories);
-                product.setProteins(proteins);
-                product.setFats(fats);
-                product.setCarbohydrates(carbohydrates);
-                product.setDescription(description);
-            }
+        try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                ResultSet rs = statement.executeQuery();
+                if (rs.next()) {
+                    int productId = rs.getInt(1);
+                    String name = rs.getString(2);
+                    float weight = rs.getFloat(3);
+                    float calories = rs.getFloat(4);
+                    float proteins = rs.getFloat(5);
+                    float fats = rs.getFloat(6);
+                    float carbohydrates = rs.getFloat(7);
+                    String description = rs.getString(8);
+                    product.setId(productId);
+                    product.setName(name);
+                    product.setWeight(weight);
+                    product.setCalories(calories);
+                    product.setProteins(proteins);
+                    product.setFats(fats);
+                    product.setCarbohydrates(carbohydrates);
+                    product.setDescription(description);
+                }
 
+            }
         } catch (SQLException | NumberFormatException throwables) {
             throwables.printStackTrace();
         }

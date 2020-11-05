@@ -1,9 +1,7 @@
 package model;
 
-import javax.sql.RowSet;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class H2ItemDAO implements ItemDAO {
@@ -14,6 +12,7 @@ public class H2ItemDAO implements ItemDAO {
         String sql = "INSERT INTO ITEMS VALUES(null, ?, ?, ?, ?)";
 
         try {
+            assert connection != null;
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setString(1, item.getName());
             stm.setFloat(2, item.getWeight());
@@ -28,10 +27,12 @@ public class H2ItemDAO implements ItemDAO {
     @Override
     public boolean deleteItem(int id) {
         String sql = "DELETE FROM ITEMS WHERE ITEM_ID = ?";
-        try (Connection connection = H2DAOFactory.createConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            statement.executeUpdate();
+        try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                statement.executeUpdate();
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -41,28 +42,30 @@ public class H2ItemDAO implements ItemDAO {
 
     @Override
 
-    public Item findItemById(int key) throws SQLException {
+    public Item findItemById(int key) {
         String sql = "SELECT * FROM ITEMS WHERE ITEM_ID = ?";
         Item item = new Item();
         item.setId(key);
 
-        try (Connection connection = H2DAOFactory.createConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, key);
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()) {
-                int id = rs.getInt(1);
-                String name = rs.getString(2);
-                float weight = rs.getFloat(3);
-                float volume = rs.getFloat(4);
-                String description = rs.getString(5);
-                item.setId(id);
-                item.setName(name);
-                item.setWeight(weight);
-                item.setVolume(volume);
-                item.setDescription(description);
-            }
+        try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, key);
+                ResultSet rs = statement.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt(1);
+                    String name = rs.getString(2);
+                    float weight = rs.getFloat(3);
+                    float volume = rs.getFloat(4);
+                    String description = rs.getString(5);
+                    item.setId(id);
+                    item.setName(name);
+                    item.setWeight(weight);
+                    item.setVolume(volume);
+                    item.setDescription(description);
+                }
 
+            }
         } catch (SQLException | NumberFormatException throwables) {
             throwables.printStackTrace();
         }
@@ -74,6 +77,7 @@ public class H2ItemDAO implements ItemDAO {
         List<Item> items = new ArrayList<>();
         String sql = "SELECT * FROM ITEMS";
         try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
@@ -101,35 +105,28 @@ public class H2ItemDAO implements ItemDAO {
     public boolean updateItem(Item item) {
 
         String sql = "UPDATE ITEMS SET ITEM_NAME=?, ITEM_WEIGHT=?, ITEM_VOLUME=?, ITEM_DESCRIPTION=? WHERE ITEM_ID=?";
-        try (Connection connection = H2DAOFactory.createConnection();
+        try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(5, item.getId());
+                statement.setString(1, item.getName());
+                statement.setFloat(2, item.getWeight());
+                statement.setFloat(3, item.getVolume());
+                statement.setString(4, item.getDescription());
 
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(5, item.getId());
-            statement.setString(1, item.getName());
-            statement.setFloat(2, item.getWeight());
-            statement.setFloat(3, item.getVolume());
-            statement.setString(4, item.getDescription());
+                int rowsAffected = statement.executeUpdate();
+                statement.close();
 
-            int rowsAffected = statement.executeUpdate();
-            statement.close();
-
-            System.out.println(rowsAffected + " Rows affected");
-            System.out.println("Items.Item with id " + item.getId() + " was updated in DB with following details: " + item.getName() + " " + item.getWeight() + " " + item.getVolume() + " " + item.getDescription());
+                System.out.println(rowsAffected + " Rows affected");
+                System.out.println("Items.Item with id " + item.getId() + " was updated in DB with following details: " + item.getName() + " " + item.getWeight() + " " + item.getVolume() + " " + item.getDescription());
 
 
+            }
         } catch (SQLException | NumberFormatException throwables) {
             throwables.printStackTrace();
         }
         return true;
     }
 
-    @Override
-    public RowSet selectItemRS() {
-        return null;
-    }
 
-    @Override
-    public Collection selectItemTO() {
-        return null;
-    }
 }

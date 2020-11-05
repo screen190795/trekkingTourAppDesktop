@@ -1,9 +1,6 @@
 package controller;
-import javafx.event.ActionEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,8 +15,6 @@ import static controller.Controller.updatedEquipmentType;
 
 
 public class InsertEquipmentTypeController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
 
     @FXML
     TextField insertNameText;
@@ -98,7 +93,6 @@ public class InsertEquipmentTypeController implements Initializable {
         H2EquipmentTypeDAO h2EquipmentTypeDAO = new H2EquipmentTypeDAO();
         h2EquipmentTypeDAO.insertEquipmentType(equipmentType);
 
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -112,7 +106,7 @@ public class InsertEquipmentTypeController implements Initializable {
         H2EquipmentTypeDAO h2EquipmentTypeDAO = new H2EquipmentTypeDAO();
         h2EquipmentTypeDAO.updateEquipmentType(updatedEquipmentType);
 
-        Controller controller = new Controller();
+
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -122,7 +116,7 @@ public class InsertEquipmentTypeController implements Initializable {
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
+
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {

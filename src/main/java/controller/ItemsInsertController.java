@@ -1,15 +1,12 @@
 package controller;
 
 
-import javafx.event.ActionEvent;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import model.H2ItemDAO;
 import model.Item;
 import org.h2.jdbc.JdbcSQLException;
@@ -17,17 +14,10 @@ import view.App;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
 public class ItemsInsertController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
-
     @FXML
     TextField insertNameText;
     @FXML
@@ -66,52 +56,51 @@ public class ItemsInsertController implements Initializable {
             insertNameLabel.setText("Некорректное значение");
         }
     }
-            @FXML
-            private void insertWeight(){
-                insertWeightLabel.setText("ОК");
+    @FXML
+    private void insertWeight(){
+        insertWeightLabel.setText("ОК");
         try {
             float weight = Float.parseFloat(insertWeightText.getText());
             item.setWeight(weight);
         }catch (Exception e){
             insertWeightLabel.setText("Некорректное значение");
         }
-                }
-        @FXML
-       private void insertVolume() {
-            insertVolumeLabel.setText("ОК");
+    }
+    @FXML
+    private void insertVolume() {
+        insertVolumeLabel.setText("ОК");
         try {
             float volume = Float.parseFloat(insertVolumeText.getText());
             item.setWeight(volume);
         } catch (Exception e){
             insertVolumeLabel.setText("Некорректное значение");
         }
+    }
+    @FXML
+    private void insertDescription(){
+        insertDescriptionLabel.setText("ОК");
+        try {
+            String description = insertDescriptionText.getText();
+            item.setDescription(description);
+        } catch(Exception e){
+            insertDescriptionLabel.setText("Некорректное значение");
         }
-        @FXML
-                private void insertDescription(){
-            insertDescriptionLabel.setText("ОК");
-            try {
-                String description = insertDescriptionText.getText();
-                item.setDescription(description);
-            } catch(Exception e){
-                insertDescriptionLabel.setText("Некорректное значение");
-            }
-        }
+    }
     @FXML
     private void execute() {
         try {
             H2ItemDAO h2ItemDAO = new H2ItemDAO();
             h2ItemDAO.insertItem(item);
-            Controller controller = new Controller();
             if(item.getName()==null||item.getWeight() ==0){
 
                 throw new JdbcSQLException("u","u","u",5, throwable,"u");
             }
-                App.setRoot("/trakkingAppView.fxml");
-            } catch (JdbcSQLException e) {
-                e.printStackTrace();
-                alertWindow = new Alert(Alert.AlertType.ERROR);
-                alertWindow.setHeaderText("Заполнены не все данные. Пожалуйста, укажите необходимые данные и повторите попытку");
-                alertWindow.showAndWait();
+            App.setRoot("/trakkingAppView.fxml");
+        } catch (JdbcSQLException e) {
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.ERROR);
+            alertWindow.setHeaderText("Заполнены не все данные. Пожалуйста, укажите необходимые данные и повторите попытку");
+            alertWindow.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -122,7 +111,6 @@ public class ItemsInsertController implements Initializable {
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {

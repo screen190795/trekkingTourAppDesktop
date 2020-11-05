@@ -2,13 +2,11 @@ package controller;
 
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.H2ItemDAO;
-import model.Item;
 import view.App;
 
 import java.io.IOException;
@@ -19,8 +17,8 @@ import static controller.Controller.updatedItem;
 
 
 public class ItemsUpdateController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
+
+
 
     @FXML
     TextField updateNameField;
@@ -55,53 +53,50 @@ public class ItemsUpdateController implements Initializable {
             updateNameLabel.setText("Некорректное значение");
         }
     }
-            @FXML
-            private void updateWeight(){
-                updateWeightLabel.setText("ОК");
+    @FXML
+    private void updateWeight(){
+        updateWeightLabel.setText("ОК");
         try {
             float weight = Float.parseFloat(updateWeightField.getText());
             updatedItem.setWeight(weight);
         }catch (Exception e){
             updateWeightLabel.setText("Некорректное значение");
         }
-                }
-        @FXML
-       private void updateVolume() {
-            updateVolumeLabel.setText("ОК");
+    }
+    @FXML
+    private void updateVolume() {
+        updateVolumeLabel.setText("ОК");
         try {
             float volume = Float.parseFloat(updateVolumeField.getText());
             updatedItem.setWeight(volume);
         } catch (Exception e){
             updateVolumeLabel.setText("Некорректное значение");
         }
+    }
+    @FXML
+    private void updateDescription(){
+        updateDescriptionLabel.setText("ОК");
+        try {
+            String description = updateDescriptionField.getText();
+            updatedItem.setDescription(description);
+        } catch(Exception e){
+            updateDescriptionLabel.setText("Некорректное значение");
         }
-        @FXML
-                private void updateDescription(){
-            updateDescriptionLabel.setText("ОК");
-            try {
-                String description = updateDescriptionField.getText();
-                updatedItem.setDescription(description);
-            } catch(Exception e){
-                updateDescriptionLabel.setText("Некорректное значение");
-            }
-        }
+    }
     @FXML
     private void execute() {
 
-            H2ItemDAO h2ItemDAO = new H2ItemDAO();
-            h2ItemDAO.updateItem(updatedItem);
-
-            Controller controller = new Controller();
-            try {
-                App.setRoot("/trakkingAppView.fxml");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        H2ItemDAO h2ItemDAO = new H2ItemDAO();
+        h2ItemDAO.updateItem(updatedItem);
+        try {
+            App.setRoot("/trakkingAppView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {

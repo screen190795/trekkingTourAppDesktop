@@ -1,8 +1,6 @@
 package model;
 
-import javax.sql.RowSet;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
 public interface ItemDAO {
@@ -11,6 +9,4 @@ public interface ItemDAO {
     Item findItemById(int key) throws SQLException;
     List<Item> findAll();
     boolean updateItem(Item item);
-    RowSet selectItemRS();
-    Collection selectItemTO();
 }

@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -9,11 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Client;
 import model.H2ClientDAO;
-import model.H2ProductDAO;
-import model.Client;
-import org.h2.jdbc.JdbcSQLException;
 import view.App;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -21,9 +16,6 @@ import java.util.ResourceBundle;
 import static controller.Controller.updatedClient;
 
 public class InsertClientController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
-
     @FXML
     TextField insertSurnameText;
 
@@ -66,10 +58,9 @@ public class InsertClientController implements Initializable {
     @FXML
     Label insertDescriptionLabel;
     @FXML
-            Button cancelButton;
+    Button cancelButton;
 
     Client client = new Client();
-    private Alert alertWindow;
 
 
     @FXML
@@ -116,7 +107,7 @@ public class InsertClientController implements Initializable {
             client.setAge(age);
             updatedClient.setAge(age);
         } catch (Exception e){
-           insertAgeLabel.setText("Некорректное значение");
+            insertAgeLabel.setText("Некорректное значение");
         }
     }
 
@@ -184,27 +175,26 @@ public class InsertClientController implements Initializable {
 
     @FXML
     private void execute() {
-try{
-    if(client.getName() ==null|| client.getSurname()==null){
-        Throwable throwable;
-        throw new NullPointerException();
-    }
-        H2ClientDAO h2ClientDAO = new H2ClientDAO();
-        h2ClientDAO.insertClient(client);
+        Alert alertWindow;
+        try{
+            if(client.getName() ==null|| client.getSurname()==null){
+                throw new NullPointerException();
+            }
+            H2ClientDAO h2ClientDAO = new H2ClientDAO();
+            h2ClientDAO.insertClient(client);
 
-        Controller controller = new Controller();
-        App.setRoot("/trakkingAppView.fxml");
-    } catch (NullPointerException e) {
-        e.printStackTrace();
-        alertWindow = new Alert(Alert.AlertType.ERROR);
-        alertWindow.setHeaderText("Заполнены не все данные. Пожалуйста, укажите необходимые данные и повторите попытку");
-        alertWindow.showAndWait();
-    } catch (Exception e) {
-        e.printStackTrace();
-        alertWindow = new Alert(Alert.AlertType.ERROR);
-        alertWindow.setHeaderText("Неизвестная ошибка");
-        alertWindow.showAndWait();
-    }
+            App.setRoot("/trakkingAppView.fxml");
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.ERROR);
+            alertWindow.setHeaderText("Заполнены не все данные. Пожалуйста, укажите необходимые данные и повторите попытку");
+            alertWindow.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+            alertWindow = new Alert(Alert.AlertType.ERROR);
+            alertWindow.setHeaderText("Неизвестная ошибка");
+            alertWindow.showAndWait();
+        }
     }
 
 
@@ -214,7 +204,6 @@ try{
         H2ClientDAO h2ClientDAO = new H2ClientDAO();
         h2ClientDAO.updateClient(updatedClient);
 
-        Controller controller = new Controller();
         try {
 
             App.setRoot("/trakkingAppView.fxml");
@@ -226,7 +215,6 @@ try{
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {

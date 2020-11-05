@@ -4,13 +4,10 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
 import model.*;
 import view.App;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,8 +20,6 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    //FXMLLoader loader = new FXMLLoader();
-    //Controller controller = loader.getController();
     static Item updatedItem = new Item();
     static Product updatedProduct = new Product();
     static EquipmentType updatedEquipmentType = new EquipmentType();
@@ -58,7 +53,7 @@ public class Controller implements Initializable {
     TitledPane productsTitlePane;
 
     @FXML
-    ListView itemsListView;
+    ListView<Object> itemsListView;
 
     @FXML
     TitledPane equipmentTypeTitledPane;
@@ -79,7 +74,7 @@ public class Controller implements Initializable {
     Button showEquipmentButton;
 
     @FXML
-    ListView additionalListView;
+    ListView<Object> additionalListView;
 
     @FXML
     Button deleteEquipmentButton;
@@ -165,7 +160,6 @@ public class Controller implements Initializable {
     @FXML
     private void insert() {
 
-        //ItemsInsertController itemsInsertController = new ItemsInsertController();
         try {
             App.setRoot("/insertView.fxml");
         } catch (Exception e) {
@@ -389,7 +383,6 @@ public class Controller implements Initializable {
 
     @FXML
     private void insertEquipment() {
-        //InsertEquipmentController insertEquipmentController = new InsertEquipmentController();
         try {
             App.setRoot("/insertEquipmentView.fxml");
         } catch (Exception e) {
@@ -409,14 +402,10 @@ public class Controller implements Initializable {
         list4 = h2EquipmentDAO.findEquipmentByType(updatedEquipmentType.getId());
         List<Item> items = new ArrayList<>();
         for (Equipment equipment : list4) {
-            try {
-                int itemId = equipment.getItemId();
-                H2ItemDAO h2ItemDAO = new H2ItemDAO();
-                Item item = h2ItemDAO.findItemById(itemId);
-                items.add(item);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            int itemId = equipment.getItemId();
+            H2ItemDAO h2ItemDAO = new H2ItemDAO();
+            Item item = h2ItemDAO.findItemById(itemId);
+            items.add(item);
         }
         ObservableList<Item> itemObservableList = FXCollections.observableArrayList(items);
         additionalListView.getItems().setAll(itemObservableList);

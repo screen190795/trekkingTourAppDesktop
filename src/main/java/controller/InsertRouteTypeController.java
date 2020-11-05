@@ -1,31 +1,23 @@
 package controller;
 
-import geoData.GeoPoint;
+
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.EquipmentType;
-import model.H2EquipmentTypeDAO;
 import model.H2RouteTypeDAO;
 import model.RouteType;
 import view.App;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import static controller.Controller.updatedEquipmentType;
 import static controller.Controller.updatedRouteType;
 
 
 public class InsertRouteTypeController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
     static RouteType routeType;
 
     @FXML
@@ -103,7 +95,7 @@ public class InsertRouteTypeController implements Initializable {
     private void insertStartY() {
         insertStartYLabel.setText("ОК");
         try {
-            Double startY = Double.parseDouble(insertStartYText.getText());
+            double startY = Double.parseDouble(insertStartYText.getText());
             routeType.setRouteTypeStartY(startY);
             updatedRouteType.setRouteTypeStartY(startY);
         } catch (Exception e){
@@ -114,7 +106,7 @@ public class InsertRouteTypeController implements Initializable {
     private void insertFinishX() {
         insertFinishXLabel.setText("ОК");
         try {
-            Double finishX = Double.parseDouble(insertFinishXText.getText());
+            double finishX = Double.parseDouble(insertFinishXText.getText());
             routeType.setRouteTypeFinishX(finishX);
             updatedRouteType.setRouteTypeFinishX(finishX);
         } catch (Exception e){
@@ -126,7 +118,7 @@ public class InsertRouteTypeController implements Initializable {
     private void insertFinishY() {
         insertFinishYLabel.setText("ОК");
         try {
-            Double finishY = Double.parseDouble(insertFinishYText.getText());
+            double finishY = Double.parseDouble(insertFinishYText.getText());
             routeType.setRouteTypeFinishY(finishY);
             updatedRouteType.setRouteTypeFinishY(finishY);
         } catch (Exception e){
@@ -138,7 +130,7 @@ public class InsertRouteTypeController implements Initializable {
     private void insertDistance() {
         insertDistanceLabel.setText("ОК");
         try {
-            Float distance = Float.parseFloat(insertDistanceText.getText());
+            float distance = Float.parseFloat(insertDistanceText.getText());
             routeType.setRouteTypeDistance(distance);
             updatedRouteType.setRouteTypeDistance(distance);
         } catch (Exception e){
@@ -163,7 +155,7 @@ public class InsertRouteTypeController implements Initializable {
     private void insertDuration() {
         insertDurationLabel.setText("ОК");
         try {
-            Float duration = Float.parseFloat(insertDurationText.getText());
+            float duration = Float.parseFloat(insertDurationText.getText());
             routeType.setRouteTypeDuration(duration);
             updatedRouteType.setRouteTypeDuration(duration);
         } catch (Exception e){
@@ -178,7 +170,6 @@ public class InsertRouteTypeController implements Initializable {
         H2RouteTypeDAO h2RouteTypeDAO = new H2RouteTypeDAO();
         h2RouteTypeDAO.insertRouteType(routeType);
 
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -192,7 +183,6 @@ public class InsertRouteTypeController implements Initializable {
         H2RouteTypeDAO h2RouteTypeDAO = new H2RouteTypeDAO();
         h2RouteTypeDAO.updateRouteType(updatedRouteType);
 
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -200,19 +190,17 @@ public class InsertRouteTypeController implements Initializable {
         }
     }
 
-@FXML
-private void smartRouteTypeInsert(){
-        GeoDataController geoDataController = new GeoDataController();
-    try {
-        App.setRoot("/insertGeoDataView.fxml");
-    } catch (IOException e) {
-        e.printStackTrace();
+    @FXML
+    private void smartRouteTypeInsert(){
+        try {
+            App.setRoot("/insertGeoDataView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {

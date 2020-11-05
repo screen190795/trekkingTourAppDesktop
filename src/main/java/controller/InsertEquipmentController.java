@@ -1,38 +1,30 @@
 package controller;
-import javafx.event.ActionEvent;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.*;
 import org.h2.jdbc.JdbcSQLException;
 import view.App;
+
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import static controller.Controller.updatedEquipmentType;
-import static controller.Controller.updatedItem;
-
 
 public class InsertEquipmentController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
-   static Equipment equipment = new Equipment();
+    static Equipment equipment = new Equipment();
     static int quantity;
     static int itemId;
     static int equipmentTypeId;
     @FXML
     TextField insertQuantityText;
     @FXML
-    ComboBox equipmentTypeComboBox;
+    ComboBox<EquipmentType> equipmentTypeComboBox;
     @FXML
-    ListView itemListView;
-
+    ListView<Item> itemListView;
     @FXML
     Button executeButton;
     @FXML
@@ -41,33 +33,32 @@ public class InsertEquipmentController implements Initializable {
     Label insertQuantityLabel;
     @FXML
     Button cancelButton;
-    private Alert alertWindow;
+
 
     @FXML
-    int selectItem(){
-        Item item = (Item) itemListView.getSelectionModel().getSelectedItem();
+    int selectItem() {
+        Item item = itemListView.getSelectionModel().getSelectedItem();
         itemId = item.getId();
         System.out.println(itemId);
-        return  itemId;
+        return itemId;
     }
 
     @FXML
-     int selectEquipmentType(){
-        EquipmentType equipmentType = (EquipmentType) equipmentTypeComboBox.getSelectionModel().getSelectedItem();
-      equipmentTypeId = equipmentType.getId();
-      System.out.println(equipmentTypeId);
-      return  equipmentTypeId;
+    int selectEquipmentType() {
+        EquipmentType equipmentType = equipmentTypeComboBox.getSelectionModel().getSelectedItem();
+        equipmentTypeId = equipmentType.getId();
+        System.out.println(equipmentTypeId);
+        return equipmentTypeId;
     }
 
 
-
     @FXML
-    int  selectQuantity(){
+    int selectQuantity() {
         insertQuantityLabel.setText("ОК");
         try {
-            quantity= Integer.parseInt(insertQuantityText.getText());
+            quantity = Integer.parseInt(insertQuantityText.getText());
 
-        }catch (Exception e){
+        } catch (Exception e) {
             insertQuantityLabel.setText("Некорректное значение");
         }
 
@@ -77,18 +68,18 @@ public class InsertEquipmentController implements Initializable {
 
     @FXML
     void execute() {
+        Alert alertWindow;
         try {
-        for(int i = 0; i < quantity; i++){
-            H2EquipmentDAO h2EquipmentDAO = new H2EquipmentDAO();
-           equipment.setItemId(itemId);
-           equipment.setEquipmentTypeId(equipmentTypeId);
-           if(equipment.getItemId()==0|| equipment.getEquipmentTypeId() ==0){
-               throw new JdbcSQLException("u","u","u",5,  new Throwable(),"u");
-           }
-           System.out.println(equipment.getItemId() + " " + equipment.getEquipmentTypeId());
-            h2EquipmentDAO.insertEquipment(equipment);
-        }
-        Controller controller = new Controller();
+            for (int i = 0; i < quantity; i++) {
+                H2EquipmentDAO h2EquipmentDAO = new H2EquipmentDAO();
+                equipment.setItemId(itemId);
+                equipment.setEquipmentTypeId(equipmentTypeId);
+                if (equipment.getItemId() == 0 || equipment.getEquipmentTypeId() == 0) {
+                    throw new JdbcSQLException("u", "u", "u", 5, new Throwable(), "u");
+                }
+                System.out.println(equipment.getItemId() + " " + equipment.getEquipmentTypeId());
+                h2EquipmentDAO.insertEquipment(equipment);
+            }
             App.setRoot("/trakkingAppView.fxml");
         } catch (JdbcSQLException e) {
             e.printStackTrace();
@@ -106,7 +97,6 @@ public class InsertEquipmentController implements Initializable {
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -118,13 +108,13 @@ public class InsertEquipmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         H2ItemDAO h2ItemDAO = new H2ItemDAO();
-        List<Item> list = new ArrayList<>();
+        List<Item> list;
         list = h2ItemDAO.findAll();
         ObservableList<Item> itemObservableList = FXCollections.observableArrayList(list);
         itemListView.getItems().setAll(itemObservableList);
 
-        H2EquipmentTypeDAO h2EquipmentTypeDAO= new H2EquipmentTypeDAO();
-        List<EquipmentType> equipmentTypeList = new ArrayList<>();
+        H2EquipmentTypeDAO h2EquipmentTypeDAO = new H2EquipmentTypeDAO();
+        List<EquipmentType> equipmentTypeList;
         equipmentTypeList = h2EquipmentTypeDAO.findAll();
         ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(equipmentTypeList);
         equipmentTypeComboBox.getItems().removeAll(equipmentTypeComboBox.getItems());

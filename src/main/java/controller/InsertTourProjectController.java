@@ -6,7 +6,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
@@ -15,7 +14,6 @@ import view.App;
 
 import java.io.*;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +22,7 @@ import java.util.ResourceBundle;
 
 import static controller.Controller.updatedTourProject;
 
+@SuppressWarnings("ALL")
 public class InsertTourProjectController implements Initializable {
     TourProject tourProject = new TourProject();
     H2ProductDAO h2ProductDAO = new H2ProductDAO();
@@ -37,8 +36,8 @@ public class InsertTourProjectController implements Initializable {
     ProductMenuType productMenuType;
     List<Client> clientList;
     RouteType routeType;
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
+
+
     @FXML
     ComboBox routeTypeComboBox;
     @FXML
@@ -88,13 +87,9 @@ public class InsertTourProjectController implements Initializable {
         equipmentList = h2EquipmentDAO.findEquipmentByType(equipmentType.getId());
         for(int i = 0; i < equipmentList.size(); i++){
             int itemId = equipmentList.get(i).getItemId();
-            try {
-                Item item = h2ItemDAO.findItemById(itemId);
-                itemList.add(item);
-                resultTextArea.appendText(item.toString());
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            Item item = h2ItemDAO.findItemById(itemId);
+            itemList.add(item);
+            resultTextArea.appendText(item.toString());
         }
     }
 
@@ -173,7 +168,7 @@ public class InsertTourProjectController implements Initializable {
             //Save
             System.out.println("Процесс открытия файла");
             StringBuilder stringBuilder = new StringBuilder();
-           String string = resultTextArea.getText();
+            String string = resultTextArea.getText();
             FileOutputStream fileOutputStream = new FileOutputStream(file);
             BufferedWriter bufferedWriter = new BufferedWriter(
                     new OutputStreamWriter(fileOutputStream, "windows-1251"));

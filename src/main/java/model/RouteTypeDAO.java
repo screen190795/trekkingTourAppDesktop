@@ -7,5 +7,8 @@ public interface RouteTypeDAO {
     boolean deleteRouteType(int id);
     RouteType selectRouteTypeById(int id);
     boolean updateRouteType(RouteType routeType);
-    List<RouteType> findAllRouteTypes();
+
+    default List<RouteType> findAllRouteTypes() {
+        return null;
+    }
 }

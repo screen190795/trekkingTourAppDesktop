@@ -1,14 +1,11 @@
 package controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import model.H2ProductDAO;
 import model.H2ProductMenuTypeDAO;
-import model.Product;
 import model.ProductMenuType;
 import view.App;
 
@@ -16,12 +13,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static controller.Controller.updatedProduct;
 import static controller.Controller.updatedProductMenuType;
 
 public class InsertProductMenuTypeController implements Initializable {
-    FXMLLoader loader =new FXMLLoader();
-    Controller controller= loader.getController();
+
 
 
     @FXML
@@ -131,7 +126,7 @@ public class InsertProductMenuTypeController implements Initializable {
         try {
             float carbohydrates = Float.parseFloat(insertProductMenuTypeCarbohydratesText.getText());
             productMenuType.setCarbohydrates(carbohydrates);
-           updatedProductMenuType.setCarbohydrates(carbohydrates);
+            updatedProductMenuType.setCarbohydrates(carbohydrates);
         } catch (Exception e){
             insertProductMenuTypeCarbohydratesLabel.setText("Некорректное значение");
         }
@@ -154,7 +149,6 @@ public class InsertProductMenuTypeController implements Initializable {
 
         H2ProductMenuTypeDAO h2ProductMenuTypeDAO = new H2ProductMenuTypeDAO();
         h2ProductMenuTypeDAO.insertProductMenuType(productMenuType);
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -168,8 +162,6 @@ public class InsertProductMenuTypeController implements Initializable {
 
         H2ProductMenuTypeDAO h2ProductMenuTypeDAO = new H2ProductMenuTypeDAO();
         h2ProductMenuTypeDAO.updateProductMenuType(updatedProductMenuType);
-
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
@@ -179,7 +171,6 @@ public class InsertProductMenuTypeController implements Initializable {
 
     @FXML
     private void cancel() {
-        Controller controller = new Controller();
         try {
             App.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {

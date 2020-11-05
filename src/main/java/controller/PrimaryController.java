@@ -6,9 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import model.H2Script;
-import org.h2.jdbc.JdbcSQLSyntaxErrorException;
 import view.App;
-
 
 import java.io.File;
 import java.io.IOException;
@@ -20,17 +18,14 @@ public class PrimaryController {
     Button welcomeButton;
     @FXML
     Button scriptButton;
-    private Alert alertWindow;
 
     @FXML
     private void switchToSecondary() throws IOException {
-        Controller controller = new Controller();
         App.setRoot("/trakkingAppView.fxml");
     }
 
     @FXML
     private void initialize() {
-        // Handle Button event
         welcomeButton.setOnAction((event) -> {
             try {
                 this.switchToSecondary();
@@ -42,7 +37,7 @@ public class PrimaryController {
     }
 
     @FXML
-    private void executeScript(ActionEvent event) throws IOException {
+    private void executeScript(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
         fileChooser.setTitle("Open Document");//Заголовок диалога
         FileChooser.ExtensionFilter extFilter =
@@ -55,7 +50,7 @@ public class PrimaryController {
             h2Script.executeScript(file);
         } catch (Exception e) {
             e.printStackTrace();
-            alertWindow = new Alert(Alert.AlertType.ERROR);
+            Alert alertWindow = new Alert(Alert.AlertType.ERROR);
             alertWindow.setHeaderText("База данных уже выгружена");
             alertWindow.showAndWait();
         }

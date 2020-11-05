@@ -1,8 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.SQLException;
-
 
 public class Equipment implements Serializable {
     int itemId;

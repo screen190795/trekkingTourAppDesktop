@@ -9,6 +9,8 @@ public class Client {
     int passportSerial;
     double passportNumber;
     String phone;
+    String email;
+    String description;
 
     @Override
     public String toString() {
@@ -25,9 +27,6 @@ public class Client {
                 ", Дополнительные сведения:" + description + '\'' +
                 '}';
     }
-
-    String email;
-    String description;
 
     public int getId() {
         return id;

@@ -12,6 +12,7 @@ public class H2EquipmentTypeDAO implements EquipmentTypeDAO {
             String sql = "INSERT INTO EQUIPMENT_TYPE VALUES(null, ?, ?, ?, ?)";
 
             try {
+                assert connection != null;
                 PreparedStatement stm = connection.prepareStatement(sql);
                 stm.setString(1, equipmentType.getName());
                 stm.setInt(2, equipmentType.getMaxWeight());
@@ -28,7 +29,8 @@ public class H2EquipmentTypeDAO implements EquipmentTypeDAO {
     public boolean deleteEquipmentType(int id) throws SQLException {
         String sql = "DELETE FROM EQUIPMENT_TYPE WHERE EQUIPMENT_TYPE_ID = ?";
         Connection connection = H2DAOFactory.createConnection();
-             PreparedStatement statement = connection.prepareStatement(sql);
+        assert connection != null;
+        PreparedStatement statement = connection.prepareStatement(sql);
 
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -40,22 +42,21 @@ public class H2EquipmentTypeDAO implements EquipmentTypeDAO {
     @Override
     public boolean updateEquipmentType(EquipmentType equipmentType) {
         String sql = "UPDATE EQUIPMENT_TYPE SET EQUIPMENT_TYPE_NAME=?, MAX_WEIGHT=?, PURPOSE=?, DESCRIPTION=? WHERE EQUIPMENT_TYPE_ID=?";
-        try (Connection connection = H2DAOFactory.createConnection();
-
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(5, equipmentType.getId());
-            statement.setString(1, equipmentType.getName());
-            statement.setInt(2, equipmentType.getMaxWeight());
-            statement.setString(3, equipmentType.getPurpose());
-            statement.setString(4, equipmentType.getDescription());
-
-            int rowsAffected = statement.executeUpdate();
-            statement.close();
-
-            System.out.println(rowsAffected + " Rows affected");
-            System.out.println("Items.Item with id " + equipmentType.getId() + " was updated in DB with following details: " + equipmentType.getName() + " " + equipmentType.getMaxWeight() + " " + equipmentType.getPurpose() + " " + equipmentType.getDescription());
+        try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(5, equipmentType.getId());
+                statement.setString(1, equipmentType.getName());
+                statement.setInt(2, equipmentType.getMaxWeight());
+                statement.setString(3, equipmentType.getPurpose());
+                statement.setString(4, equipmentType.getDescription());
+                int rowsAffected = statement.executeUpdate();
+                statement.close();
+                System.out.println(rowsAffected + " Rows affected");
+                System.out.println("Items.Item with id " + equipmentType.getId() + " was updated in DB with following details: " + equipmentType.getName() + " " + equipmentType.getMaxWeight() + " " + equipmentType.getPurpose() + " " + equipmentType.getDescription());
 
 
+            }
         } catch (SQLException | NumberFormatException throwables) {
             throwables.printStackTrace();
         }
@@ -67,6 +68,7 @@ public class H2EquipmentTypeDAO implements EquipmentTypeDAO {
         List<EquipmentType> equipmentTypes = new ArrayList<>();
         String sql = "SELECT * FROM EQUIPMENT_TYPE";
         try (Connection connection = H2DAOFactory.createConnection()) {
+            assert connection != null;
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {

@@ -3,6 +3,9 @@ package model;
 import java.io.Serializable;
 
 public class Group implements Serializable {
+    int clientId;
+    int routeTypeId;
+
     public int getClientId() {
         return clientId;
     }
@@ -18,11 +21,6 @@ public class Group implements Serializable {
     public void setRouteTypeId(int routeTypeId) {
         this.routeTypeId = routeTypeId;
     }
-
-    int clientId;
-    int routeTypeId;
-
-
 
     @Override
     public String toString(){
