@@ -1,16 +1,13 @@
 package appApachePoi;
 
 import model.Client;
-import org.apache.poi.xwpf.usermodel.XWPFTable;
-import org.apache.poi.xwpf.usermodel.XWPFTableRow;
-
-import java.io.*;
-
 import org.apache.poi.xwpf.usermodel.*;
-
 import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTRow;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class SetColumnValue {
 

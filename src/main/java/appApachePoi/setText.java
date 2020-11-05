@@ -1,19 +1,13 @@
 package appApachePoi;
 
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
-
 import model.Client;
-import org.apache.poi.xwpf.usermodel.*;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
-import org.apache.xmlbeans.XmlObject;
-import org.apache.xmlbeans.XmlCursor;
-
-import  org.openxmlformats.schemas.wordprocessingml.x2006.main.CTR;
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
-import java.util.ArrayList;
 
 public class setText {
 
@@ -25,6 +19,7 @@ public class setText {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        assert doc != null;
         for (XWPFParagraph p : doc.getParagraphs()){
 
                 int numberOfRuns = p.getRuns().size();
