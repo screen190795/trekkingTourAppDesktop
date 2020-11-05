@@ -34,8 +34,11 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/appApachePoi/pom.xml" />
         <option value="$PROJECT_DIR$/appDocx4j/pom.xml" />
         <option value="$PROJECT_DIR$/controller/pom.xml" />
+        <option value="$PROJECT_DIR$/main/pom.xml" />
+        <option value="$PROJECT_DIR$/model/pom.xml" />
         <option value="$PROJECT_DIR$/trakkingTourWeb/pom.xml" />
         <option value="$PROJECT_DIR$/view/pom.xml" />
       </set>
