@@ -187,10 +187,7 @@ public class Controller implements Initializable {
             list = h2ItemDAO.findAll();
             ObservableList<Item> itemObservableList = FXCollections.observableArrayList(list);
             itemsListView.getItems().setAll(itemObservableList);
-        if(item == null){
-            throw new NullPointerException();
-        }
-    } catch (NullPointerException e) {
+        } catch (NullPointerException e) {
         e.printStackTrace();
         alertWindow = new Alert(Alert.AlertType.WARNING);
         alertWindow.setHeaderText("Не выбран элемент'");
@@ -257,7 +254,7 @@ public class Controller implements Initializable {
     @FXML
     private void findAllItems() {
         H2ItemDAO h2ItemDAO = new H2ItemDAO();
-        List<Item> list = new ArrayList<>();
+        List<Item> list;
         list = h2ItemDAO.findAll();
         ObservableList<Item> itemObservableList = FXCollections.observableArrayList(list);
         itemsListView.getItems().setAll(itemObservableList);
@@ -266,7 +263,7 @@ public class Controller implements Initializable {
     @FXML
     private void findAllProducts() {
         H2ProductDAO h2ProductDAO = new H2ProductDAO();
-        List<Product> list2 = new ArrayList<>();
+        List<Product> list2;
         list2 = h2ProductDAO.findAll();
         ObservableList<Product> productObservableList = FXCollections.observableArrayList(list2);
         itemsListView.getItems().setAll(productObservableList);
@@ -294,7 +291,7 @@ public class Controller implements Initializable {
         Product product = (Product) itemsListView.getSelectionModel().getSelectedItem();
         H2ProductDAO h2ProductDAO = new H2ProductDAO();
         h2ProductDAO.deleteProduct(product.getId());
-        List<Product> list = new ArrayList<>();
+        List<Product> list;
         list = h2ProductDAO.findAll();
         ObservableList<Product> productObservableList = FXCollections.observableArrayList(list);
         itemsListView.getItems().setAll(productObservableList);
@@ -319,7 +316,7 @@ public class Controller implements Initializable {
     @FXML
     private void findAllEquipmentTypes() {
         H2EquipmentTypeDAO h2EquipmentTypeDAO = new H2EquipmentTypeDAO();
-        List<EquipmentType> list3 = new ArrayList<>();
+        List<EquipmentType> list3;
         list3 = h2EquipmentTypeDAO.findAll();
         ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(list3);
         itemsListView.getItems().setAll(equipmentTypeObservableList);
@@ -370,7 +367,7 @@ public class Controller implements Initializable {
         EquipmentType equipmentType = (EquipmentType) itemsListView.getSelectionModel().getSelectedItem();
         H2EquipmentTypeDAO h2EquipmentTypeDAO = new H2EquipmentTypeDAO();
         h2EquipmentTypeDAO.deleteEquipmentType(equipmentType.getId());
-        List<EquipmentType> list = new ArrayList<>();
+        List<EquipmentType> list;
         list = h2EquipmentTypeDAO.findAll();
         ObservableList<EquipmentType> equipmentTypeObservableList = FXCollections.observableArrayList(list);
         itemsListView.getItems().setAll(equipmentTypeObservableList);
@@ -416,9 +413,9 @@ public class Controller implements Initializable {
         H2EquipmentDAO h2EquipmentDAO = new H2EquipmentDAO();
         list4 = h2EquipmentDAO.findEquipmentByType(updatedEquipmentType.getId());
         List<Item> items = new ArrayList<>();
-        for(int i = 0; i < list4.size(); i++){
+        for (Equipment equipment : list4) {
             try {
-                int itemId = list4.get(i).getItemId();
+                int itemId = equipment.getItemId();
                 H2ItemDAO h2ItemDAO = new H2ItemDAO();
                 Item item = h2ItemDAO.findItemById(itemId);
                 items.add(item);
@@ -437,7 +434,6 @@ public class Controller implements Initializable {
         try {
             Item item = (Item)additionalListView.getSelectionModel().getSelectedItem();
             H2EquipmentDAO h2EquipmentDAO = new H2EquipmentDAO();
-            H2ItemDAO h2ItemDAO = new H2ItemDAO();
             h2EquipmentDAO.deleteEquipment(item.getId(), updatedEquipmentType.getId());
             this.showEquipment();
             if(item == null){
@@ -479,7 +475,7 @@ public class Controller implements Initializable {
     private void findAllProductMenuTypes()
     {
         H2ProductMenuTypeDAO h2ProductMenuTypeDAO = new H2ProductMenuTypeDAO();
-        List<ProductMenuType> productMenuTypeList = new ArrayList<>();
+        List<ProductMenuType> productMenuTypeList;
         productMenuTypeList = h2ProductMenuTypeDAO.findAllProductMenuTypes();
         ObservableList<ProductMenuType> productMenuTypeObservableList = FXCollections.observableArrayList(productMenuTypeList);
         itemsListView.getItems().setAll(productMenuTypeObservableList);
@@ -629,7 +625,7 @@ public class Controller implements Initializable {
             Client client = (Client) itemsListView.getSelectionModel().getSelectedItem();
             H2ClientDAO h2ClientDAO = new H2ClientDAO();
             h2ClientDAO.deleteClient(client.getId());
-            List<Client> list = new ArrayList<>();
+            List<Client> list;
             list = h2ClientDAO.findAllClients();
             ObservableList<Client> clientObservableList = FXCollections.observableArrayList(list);
             itemsListView.getItems().setAll(clientObservableList);
@@ -652,7 +648,7 @@ public class Controller implements Initializable {
     @FXML
     private void findAllClients() {
         H2ClientDAO h2ClientDAO = new H2ClientDAO();
-        List<Client> list = new ArrayList<>();
+        List<Client> list;
         list = h2ClientDAO.findAllClients();
         ObservableList<Client> clientObservableList = FXCollections.observableArrayList(list);
         itemsListView.getItems().setAll(clientObservableList);
@@ -702,7 +698,7 @@ public class Controller implements Initializable {
         RouteType routeType = (RouteType) itemsListView.getSelectionModel().getSelectedItem();
         H2RouteTypeDAO h2RouteTypeDAO = new H2RouteTypeDAO();
         h2RouteTypeDAO.deleteRouteType(routeType.getRouteTypeId());
-        List<RouteType> list = new ArrayList<>();
+        List<RouteType> list;
         list = h2RouteTypeDAO.findAllRouteTypes();
         ObservableList<RouteType> routeTypeObservableList = FXCollections.observableArrayList(list);
         itemsListView.getItems().setAll(routeTypeObservableList);
@@ -724,7 +720,7 @@ public class Controller implements Initializable {
     @FXML
     private void findAllRouteTypes() {
         H2RouteTypeDAO h2RouteTypeDAO = new H2RouteTypeDAO();
-        List<RouteType> list = new ArrayList<>();
+        List<RouteType> list;
         list = h2RouteTypeDAO.findAllRouteTypes();
         ObservableList<RouteType> routeTypeObservableList = FXCollections.observableArrayList(list);
         itemsListView.getItems().setAll(routeTypeObservableList);
@@ -815,13 +811,12 @@ public class Controller implements Initializable {
 
     @FXML
     private void loadTourProjects() throws  IOException, ClassNotFoundException{
-        FileInputStream fiStream = new FileInputStream("tourPrijects.dat");
+        FileInputStream fiStream = new FileInputStream("tourProjects.dat");
         ObjectInputStream objectStream = new ObjectInputStream(fiStream);
         Object object = objectStream.readObject();
         fiStream.close();
         objectStream.close();
 
-        List<TourProject> tourProjectList = (List<TourProject>) object;
     }
 
     @Override
