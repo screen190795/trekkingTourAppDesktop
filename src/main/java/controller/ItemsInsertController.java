@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import model.H2ItemDAO;
 import model.Item;
 import org.h2.jdbc.JdbcSQLException;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -95,7 +95,7 @@ public class ItemsInsertController implements Initializable {
 
                 throw new JdbcSQLException("u","u","u",5, throwable,"u");
             }
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (JdbcSQLException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -112,7 +112,7 @@ public class ItemsInsertController implements Initializable {
     @FXML
     private void cancel() {
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

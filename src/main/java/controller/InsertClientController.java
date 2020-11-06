@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.Client;
 import model.H2ClientDAO;
-import view.App;
+import view.JavaFXStarter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -183,7 +183,7 @@ public class InsertClientController implements Initializable {
             H2ClientDAO h2ClientDAO = new H2ClientDAO();
             h2ClientDAO.insertClient(client);
 
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -206,7 +206,7 @@ public class InsertClientController implements Initializable {
 
         try {
 
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -216,7 +216,7 @@ public class InsertClientController implements Initializable {
     @FXML
     private void cancel() {
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

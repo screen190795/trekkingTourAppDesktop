@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.H2ProductMenuTypeDAO;
 import model.ProductMenuType;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -150,7 +150,7 @@ public class InsertProductMenuTypeController implements Initializable {
         H2ProductMenuTypeDAO h2ProductMenuTypeDAO = new H2ProductMenuTypeDAO();
         h2ProductMenuTypeDAO.insertProductMenuType(productMenuType);
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -163,7 +163,7 @@ public class InsertProductMenuTypeController implements Initializable {
         H2ProductMenuTypeDAO h2ProductMenuTypeDAO = new H2ProductMenuTypeDAO();
         h2ProductMenuTypeDAO.updateProductMenuType(updatedProductMenuType);
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -172,7 +172,7 @@ public class InsertProductMenuTypeController implements Initializable {
     @FXML
     private void cancel() {
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

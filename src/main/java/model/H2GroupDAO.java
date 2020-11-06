@@ -3,7 +3,9 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * CRUD операции для класса Group
+ */
 public class H2GroupDAO implements GroupDAO {
 
 

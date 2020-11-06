@@ -2,15 +2,27 @@ package model;
 
 import java.io.Serializable;
 
+
+/**
+ * Класс описывает параметры определенного маршрута
+ */
 public class RouteType implements Serializable {
 
     int routeTypeId;
     String routeTypeName;
+    //Координата X старта маршрута
     double routeTypeStartX;
+    //Координата Y старта маршрута
     double RouteTypeStartY;
+    //Координата X конечной точки маршрута
     double routeTypeFinishX;
+    //Координата Y конечной точки маршрута
     double routeTypeFinishY;
+    //Общая дистанция маршрута
     float routeTypeDistance;
+    String routeTypeDescription;
+    //Общая продолжительность маршрута
+    float routeTypeDuration;
 
     public String getRouteTypeDescription() {
         return routeTypeDescription;
@@ -19,9 +31,6 @@ public class RouteType implements Serializable {
     public void setRouteTypeDescription(String routeTypeDescription) {
         this.routeTypeDescription = routeTypeDescription;
     }
-
-    String routeTypeDescription;
-    float routeTypeDuration;
 
     public int getRouteTypeId() {
         return routeTypeId;
@@ -89,9 +98,7 @@ public class RouteType implements Serializable {
 
     @Override
     public String toString() {
-        return "RouteType{" +
-                "routeTypeId=" + routeTypeId +
-                ", Наименование='" + routeTypeName + '\'' +
+        return "Наименование='" + routeTypeName + '\'' +
                 ", Точка отправления, широта=" + routeTypeStartX +
                 ", Точка отправления, долгота=" + RouteTypeStartY +
                 ", Точка прибытия, широта=" + routeTypeFinishX +

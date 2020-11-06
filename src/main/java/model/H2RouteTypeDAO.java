@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CRUD операции для класса RouteType
+ */
 public class H2RouteTypeDAO implements RouteTypeDAO {
     @Override
     public void insertRouteType(RouteType routeType) {

@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.*;
 import org.h2.jdbc.JdbcSQLException;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -80,7 +80,7 @@ public class InsertEquipmentController implements Initializable {
                 System.out.println(equipment.getItemId() + " " + equipment.getEquipmentTypeId());
                 h2EquipmentDAO.insertEquipment(equipment);
             }
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (JdbcSQLException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -98,7 +98,7 @@ public class InsertEquipmentController implements Initializable {
     @FXML
     private void cancel() {
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

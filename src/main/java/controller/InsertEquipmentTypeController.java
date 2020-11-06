@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.*;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -94,7 +94,7 @@ public class InsertEquipmentTypeController implements Initializable {
         h2EquipmentTypeDAO.insertEquipmentType(equipmentType);
 
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -108,7 +108,7 @@ public class InsertEquipmentTypeController implements Initializable {
 
 
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -118,7 +118,7 @@ public class InsertEquipmentTypeController implements Initializable {
     private void cancel() {
 
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+/**
+ * Класс соединения с Базой данных H2
+ */
 public class H2DAOFactory {
 
     public static final String DRIVER=

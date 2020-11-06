@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Класс описывает свойства отдельного продукта питания в походе
+ */
 public class Product implements Serializable {
     int id;
     String name;

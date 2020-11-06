@@ -2,11 +2,17 @@ package model;
 
 import java.io.Serializable;
 
+
+/**
+ * Класс описывает тип экипировки (по способу передвижения, сезону и т.д.)
+ */
 public class EquipmentType implements Serializable {
 
     int id;
     String name;
+    //Максимально допустимый общий вес снаряжения в наборе
     int maxWeight;
+    //Назначение набора
     String purpose;
     String description;
 
@@ -53,10 +59,9 @@ public class EquipmentType implements Serializable {
 
     @Override
     public String toString() {
-        return "EquipmentType{" +
-                "id=" + id +
-                ", Наименование='" + name + '\'' +
-                ", Вес, норма=" + maxWeight +
+        return
+                "Наименование='" + name + '\'' +
+                ", Вес, max=" + maxWeight +
                 ", Назначение='" + purpose + '\'' +
                 ", Дополнительные сведения='" + description + '\'' +
                 '}';

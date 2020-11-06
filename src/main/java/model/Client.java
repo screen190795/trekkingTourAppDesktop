@@ -1,5 +1,9 @@
 package model;
 
+
+/**
+ * Класс описывает участников похода, клиентов
+ */
 public class Client {
     int id;
     String name;
@@ -14,9 +18,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Клиент{" +
-                "id=" + id +
-                ", Имя:'" + name + '\'' +
+        return "Имя:'" + name + '\'' +
                 ", Фамилия:'" + surname + '\'' +
                 ", Отчество:'" + patronimic + '\'' +
                 ", Возраст:" + age +

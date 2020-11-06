@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
-
+/**
+ * Класс описывает группу с привязкой к определенному маршруту
+ */
 public class Group implements Serializable {
     int clientId;
     int routeTypeId;

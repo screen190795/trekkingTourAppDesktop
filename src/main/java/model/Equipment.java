@@ -2,6 +2,10 @@ package model;
 
 import java.io.Serializable;
 
+
+/**
+ * Класс описывает отдельный набор экипировки
+ */
 public class Equipment implements Serializable {
     int itemId;
     int equipmentTypeId;
@@ -25,10 +29,9 @@ public class Equipment implements Serializable {
 
     @Override
     public String toString() {
-        return "Equipment{" +
+        return "Элемент набора:" +
                 "itemId=" + itemId +
-                ", equipmentTypeId=" + equipmentTypeId +
-                '}';
+                ", equipmentTypeId=" + equipmentTypeId;
     }
 }
 

@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CRUD операции для класса Item
+ */
 public class H2ItemDAO implements ItemDAO {
 
     @Override

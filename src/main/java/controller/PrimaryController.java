@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import model.H2Script;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class PrimaryController {
 
     @FXML
     private void switchToSecondary() throws IOException {
-        App.setRoot("/trakkingAppView.fxml");
+        JavaFXStarter.setRoot("/trakkingAppView.fxml");
     }
 
     @FXML

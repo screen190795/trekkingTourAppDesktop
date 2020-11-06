@@ -10,16 +10,20 @@ import java.io.IOException;
 
 
 /**
- * JavaFX App
+ * Класс настраивает первичную JavaFX конфигурацию и открывает окно приветствия
  */
-public class App extends Application {
+public class JavaFXStarter extends Application {
     static Stage stage;
     static Scene scene;
     static Parent root;
 
+
+    /**
+     * Статический метод перехода между окнами
+     */
     public static void setRoot(String fxml) throws IOException {
         FXMLLoader loader=new FXMLLoader();
-        loader.setLocation(App.class.getResource(fxml));
+        loader.setLocation(JavaFXStarter.class.getResource(fxml));
 
 
         root = loader.load();
@@ -42,7 +46,7 @@ public class App extends Application {
             root = loader.load();
 
             scene = new Scene(root);
-            primaryStage.setTitle("TrakkingTourApp");
+            primaryStage.setTitle("TrekkingTourApp");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (Exception e) {

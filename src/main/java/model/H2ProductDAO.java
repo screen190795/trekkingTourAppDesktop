@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CRUD операции для класса Product
+ */
 public class H2ProductDAO implements ProductDAO {
 
 

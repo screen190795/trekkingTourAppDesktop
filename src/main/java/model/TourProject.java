@@ -3,6 +3,10 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
+
+/**
+ * Класс описывает все параметры маршрута с привязкой к группе, экипировке
+ */
 public class TourProject implements Serializable {
     String name;
     EquipmentType equipmentType;

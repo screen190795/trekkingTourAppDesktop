@@ -4,6 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * CRUD операции для класса EquipmentType
+ */
 public class H2EquipmentTypeDAO implements EquipmentTypeDAO {
     @Override
     public void insertEquipmentType(EquipmentType equipmentType) {

@@ -2,6 +2,10 @@ package model;
 
 import java.io.Serializable;
 
+
+/**
+ * Класс описывает привязку продуктов к определенным продуктовым наборам
+ */
 public class ProductMenu implements Serializable {
     int productId;
     int productMenuTypeId;

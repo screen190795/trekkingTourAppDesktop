@@ -3,7 +3,9 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * CRUD операции для класса ProductMenuType
+ */
 public class H2ProductMenuTypeDAO implements ProductMenuTypeDAO {
 
     public static void main(String[] args) {

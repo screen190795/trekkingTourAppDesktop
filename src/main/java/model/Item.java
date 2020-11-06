@@ -2,6 +2,10 @@ package model;
 
 import java.io.Serializable;
 
+
+/**
+ * Класс описывает элементы экипировки
+ */
 public class Item implements Serializable {
     int id;
     String name;

@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.RouteType;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -164,7 +164,7 @@ public class GeoDataController implements Initializable  {
         routeType.setRouteTypeDistance(Float.parseFloat(insertDistanceText.getText()));
         routeType.setRouteTypeDuration(Float.parseFloat(insertDurationText.getText()));
         try {
-            App.setRoot("/insertRouteTypeView.fxml");
+            JavaFXStarter.setRoot("/insertRouteTypeView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -173,7 +173,7 @@ public class GeoDataController implements Initializable  {
     @FXML
     private void cancel() {
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

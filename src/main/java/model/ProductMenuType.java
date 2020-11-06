@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * Класс описывает тип продуктового набора (напр., для зимнего похода, детской группы)
+ */
 public class ProductMenuType implements Serializable {
     int id;
     String name;
@@ -79,9 +82,7 @@ public class ProductMenuType implements Serializable {
 
     @Override
     public String toString() {
-        return "ProductMenuType{" +
-                "id=" + id +
-                ", Наименование='" + name + '\'' +
+        return "Наименование='" + name + '\'' +
                 ", Вес=" + weight +
                 ", Калории, норма" + calories +
                 ", Белки, норма=" + proteins +

@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.H2ProductDAO;
 import model.Product;
-import view.App;
+import view.JavaFXStarter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -146,7 +146,7 @@ public class InsertProductController implements Initializable {
             }
         H2ProductDAO h2ProductDAO = new H2ProductDAO();
         h2ProductDAO.insertProduct(product);
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -168,7 +168,7 @@ public class InsertProductController implements Initializable {
         h2ProductDAO.updateProduct(updatedProduct);
 
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -177,7 +177,7 @@ public class InsertProductController implements Initializable {
     @FXML
     private void cancel() {
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

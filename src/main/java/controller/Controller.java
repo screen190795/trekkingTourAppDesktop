@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import model.*;
-import view.App;
+import view.JavaFXStarter;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -161,7 +161,7 @@ public class Controller implements Initializable {
     private void insert() {
 
         try {
-            App.setRoot("/insertView.fxml");
+            JavaFXStarter.setRoot("/insertView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -202,7 +202,7 @@ public class Controller implements Initializable {
             if(updatedItem == null){
                 throw new NullPointerException();
             }
-            App.setRoot("/updateView.fxml");
+            JavaFXStarter.setRoot("/updateView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -226,7 +226,7 @@ public class Controller implements Initializable {
             if(updatedProduct == null){
                 throw new NullPointerException();
             }
-            App.setRoot("/insertProductView.fxml");
+            JavaFXStarter.setRoot("/insertProductView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -266,7 +266,7 @@ public class Controller implements Initializable {
     private void insertProduct() {
 
         try {
-            App.setRoot("/insertProductView.fxml");
+            JavaFXStarter.setRoot("/insertProductView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -318,7 +318,7 @@ public class Controller implements Initializable {
     private void insertEquipmentType() {
 
         try {
-            App.setRoot("/insertEquipmentTypeView.fxml");
+            JavaFXStarter.setRoot("/insertEquipmentTypeView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -334,7 +334,7 @@ public class Controller implements Initializable {
             if(updatedEquipmentType == null){
                 throw new NullPointerException();
             }
-            App.setRoot("/insertEquipmentTypeView.fxml");
+            JavaFXStarter.setRoot("/insertEquipmentTypeView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -384,7 +384,7 @@ public class Controller implements Initializable {
     @FXML
     private void insertEquipment() {
         try {
-            App.setRoot("/insertEquipmentView.fxml");
+            JavaFXStarter.setRoot("/insertEquipmentView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -446,7 +446,7 @@ public class Controller implements Initializable {
 
         //InsertProductMenuTypeController insertProductMenuTypeController = new InsertProductMenuTypeController();
         try {
-            App.setRoot("/insertProductMenuTypeView.fxml");
+            JavaFXStarter.setRoot("/insertProductMenuTypeView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -472,7 +472,7 @@ public class Controller implements Initializable {
             if(updatedEquipmentType == null){
                 throw new NullPointerException();
             }
-            App.setRoot("/insertProductMenuTypeView.fxml");
+            JavaFXStarter.setRoot("/insertProductMenuTypeView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -516,7 +516,7 @@ public class Controller implements Initializable {
     @FXML
     private void insertProductMenu() {
         try {
-            App.setRoot("/insertProductMenuView.fxml");
+            JavaFXStarter.setRoot("/insertProductMenuView.fxml");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -565,7 +565,7 @@ public class Controller implements Initializable {
     @FXML
     private void insertClient() {
         try {
-            App.setRoot("/insertClientView.fxml");
+            JavaFXStarter.setRoot("/insertClientView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -582,7 +582,7 @@ public class Controller implements Initializable {
             if(updatedClient == null){
                 throw new NullPointerException();
             }
-            App.setRoot("/insertClientView.fxml");
+            JavaFXStarter.setRoot("/insertClientView.fxml");
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -638,7 +638,7 @@ public class Controller implements Initializable {
     @FXML
     private void insertRouteType() {
         try {
-            App.setRoot("/insertRouteTypeView.fxml");
+            JavaFXStarter.setRoot("/insertRouteTypeView.fxml");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -655,7 +655,7 @@ public class Controller implements Initializable {
             if(updatedRouteType == null){
                 throw new NullPointerException();
             }
-            App.setRoot("/insertRouteTypeView.fxml");
+            JavaFXStarter.setRoot("/insertRouteTypeView.fxml");
         } catch (NullPointerException e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.WARNING);
@@ -708,7 +708,7 @@ public class Controller implements Initializable {
     @FXML
     private void insertGroup() {
         try {
-            App.setRoot("/insertGroupView.fxml");
+            JavaFXStarter.setRoot("/insertGroupView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);
@@ -762,7 +762,7 @@ public class Controller implements Initializable {
     @FXML
     private void insertTourProject(){
         try {
-            App.setRoot("/insertTourProjectView.fxml");
+            JavaFXStarter.setRoot("/insertTourProjectView.fxml");
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);

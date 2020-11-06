@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * CRUD операции для класса Equipment
+ */
 public class H2EquipmentDAO implements EquipmentDAO {
 
 

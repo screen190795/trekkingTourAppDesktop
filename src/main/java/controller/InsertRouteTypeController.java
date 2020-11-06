@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.H2RouteTypeDAO;
 import model.RouteType;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.IOException;
 import java.net.URL;
@@ -171,7 +171,7 @@ public class InsertRouteTypeController implements Initializable {
         h2RouteTypeDAO.insertRouteType(routeType);
 
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -184,7 +184,7 @@ public class InsertRouteTypeController implements Initializable {
         h2RouteTypeDAO.updateRouteType(updatedRouteType);
 
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -193,7 +193,7 @@ public class InsertRouteTypeController implements Initializable {
     @FXML
     private void smartRouteTypeInsert(){
         try {
-            App.setRoot("/insertGeoDataView.fxml");
+            JavaFXStarter.setRoot("/insertGeoDataView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -202,7 +202,7 @@ public class InsertRouteTypeController implements Initializable {
     @FXML
     private void cancel() {
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

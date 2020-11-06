@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import model.*;
-import view.App;
+import view.JavaFXStarter;
 
 import java.io.*;
 import java.net.URL;
@@ -182,7 +182,7 @@ public class InsertTourProjectController implements Initializable {
     private void cancel() {
         Controller controller = new Controller();
         try {
-            App.setRoot("/trakkingAppView.fxml");
+            JavaFXStarter.setRoot("/trakkingAppView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * CRUD операции для класса Client
+ */
 public class H2ClientDAO implements ClientDAO {
 
     public static void main(String[] args) {
