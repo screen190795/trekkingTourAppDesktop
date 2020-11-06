@@ -17,9 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+/**
+ * Контроллер основного окла приложения
+ */
 public class Controller implements Initializable {
 
+    /**
+     * Статические поля для изменения объекта в дополнительном окне
+     */
     static Item updatedItem = new Item();
     static Product updatedProduct = new Product();
     static EquipmentType updatedEquipmentType = new EquipmentType();

@@ -11,7 +11,9 @@ import view.JavaFXStarter;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Контроллер окна приветствия
+ */
 public class PrimaryController {
 
     @FXML
@@ -24,6 +26,9 @@ public class PrimaryController {
         JavaFXStarter.setRoot("/trakkingAppView.fxml");
     }
 
+    /**
+     * Открытие основного окна приложения
+     */
     @FXML
     private void initialize() {
         welcomeButton.setOnAction((event) -> {
@@ -36,6 +41,9 @@ public class PrimaryController {
         });
     }
 
+    /**
+     * Выбор SQL скрипта и его выполнение в случае первого запуска приложения
+     */
     @FXML
     private void executeScript(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения

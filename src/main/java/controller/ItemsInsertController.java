@@ -91,16 +91,8 @@ public class ItemsInsertController implements Initializable {
         try {
             H2ItemDAO h2ItemDAO = new H2ItemDAO();
             h2ItemDAO.insertItem(item);
-            if(item.getName()==null||item.getWeight() ==0){
 
-                throw new JdbcSQLException("u","u","u",5, throwable,"u");
-            }
             JavaFXStarter.setRoot("/trakkingAppView.fxml");
-        } catch (JdbcSQLException e) {
-            e.printStackTrace();
-            alertWindow = new Alert(Alert.AlertType.ERROR);
-            alertWindow.setHeaderText("Заполнены не все данные. Пожалуйста, укажите необходимые данные и повторите попытку");
-            alertWindow.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
             alertWindow = new Alert(Alert.AlertType.ERROR);

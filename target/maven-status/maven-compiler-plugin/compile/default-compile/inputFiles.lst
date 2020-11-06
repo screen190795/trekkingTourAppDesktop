@@ -1,7 +1,6 @@
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\geoData\CoordinatesParser.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\EquipmentTypeDAO.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\geoData\Coord.java
-C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\view\NewMain.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\ProductDAO.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\GeoDataController.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\InsertProductMenuTypeController.java
@@ -13,8 +12,8 @@ C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\geoData\geoDataF
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\InsertProductController.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\H2ClientDAO.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\RouteType.java
+C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\view\JavaFXStarter.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\geoData\Sys.java
-C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\DAOFactory.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\H2EquipmentDAO.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\Equipment.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\EquipmentDAO.java
@@ -29,14 +28,12 @@ C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\appApachePoi\Set
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\InsertGroupController.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\Group.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\GroupDAO.java
-C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\view\App.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\H2RouteTypeDAO.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\appApachePoi\setText.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\Controller.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\InsertProductMenuController.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\ProductMenu.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\geoData\GoogleMapsCoordinatesParser.java
-C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\ScriptText.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\geoData\GSONWeather.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\H2ProductDAO.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\geoData\Wind.java
@@ -57,6 +54,7 @@ C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\Items
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\H2Script.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\ProductMenuDAO.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\TourProject.java
+C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\view\Launcher.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\model\Client.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\InsertEquipmentController.java
 C:\Users\User\IdeaProjects\trekkingTourAppDesktop\src\main\java\controller\InsertTourProjectController.java

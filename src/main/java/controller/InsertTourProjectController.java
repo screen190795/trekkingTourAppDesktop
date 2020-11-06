@@ -188,7 +188,7 @@ public class InsertTourProjectController implements Initializable {
         }
     }
 
-    @FXML
+   /* @FXML
     private void exportToMCHSDoc(){
         FileChooser fileChooser = new FileChooser();//Класс работы с диалогом выборки и сохранения
         fileChooser.setTitle("Open Source");//Заголовок диалога
@@ -198,7 +198,7 @@ public class InsertTourProjectController implements Initializable {
         File source = fileChooser.showOpenDialog(null);
 
 
-        FileChooser fileChooser2 = new FileChooser();//Класс работы с диалогом выборки и сохранения
+        *//*FileChooser fileChooser2 = new FileChooser();//Класс работы с диалогом выборки и сохранения
         fileChooser2.setTitle("Open output");//Заголовок диалога
         FileChooser.ExtensionFilter extFilter2 =
                 new FileChooser.ExtensionFilter("docx files (*.docx)", "*.docx");//Расширение
@@ -213,7 +213,7 @@ public class InsertTourProjectController implements Initializable {
         String companyName = "турклуб Пик";
         String companyAddress = "ул. Шереметьевская д. 15, г. Москва";
         String companyPhoneNumber = "8-915-869-85-39";
-        String date = String.valueOf(LocalDate.now());
+        String date = String.valueOf(LocalDate.now());*//*
 
         SetColumnValue setColumnValue = new SetColumnValue();
         try {
@@ -222,7 +222,7 @@ public class InsertTourProjectController implements Initializable {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
